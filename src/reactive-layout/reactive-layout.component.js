@@ -87,6 +87,7 @@ class ReactiveLayout extends Component {
         />
         {texts.navItems.map((navItem, index) => (
           <Screen
+            key={this.props.id + index}
             id={this.props.id}
             index={index}
             bg={bgs ? bgs[index] : bgDefault}

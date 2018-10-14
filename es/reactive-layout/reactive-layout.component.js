@@ -110,13 +110,14 @@ var ReactiveLayout = function (_Component) {
         return React.createElement(
           Screen,
           {
+            key: _this2.props.id + index,
             id: _this2.props.id,
             index: index,
             bg: bgs ? bgs[index] : bgDefault,
             scrollNext: _this2.scrollNext,
             scrollPrev: _this2.scrollPrev
           },
-          React.createElement(components[index], texts, null)
+          React.createElement(components[index], { texts: texts, theme: theme }, null)
         );
       })
     );
