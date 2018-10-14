@@ -1,0 +1,24 @@
+{
+  "navItems": [
+    {
+      "text": "ACCUEIL",
+      "link": "welcome"
+    },
+    {
+      "text": "LES OFFRES",
+      "link": "experiences"
+    },
+    {
+      "text": "A POPOS",
+      "link": "formations"
+    },
+    {
+      "text": "POLITIQUE QUALITE",
+      "link": "formations"
+    },
+    {
+      "text": "CONTACT",
+      "link": "contact"
+    }
+  ]
+}

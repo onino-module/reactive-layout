@@ -1,0 +1,24 @@
+{
+  "navItems": [
+    {
+      "text": "ABOUT",
+      "link": "about"
+    },
+    {
+      "text": "EXPERIENCES",
+      "link": "experiences"
+    },
+    {
+      "text": "SKILLS",
+      "link": "skills"
+    },
+    {
+      "text": "FORMATIONS",
+      "link": "formations"
+    },
+    {
+      "text": "CONTACT",
+      "link": "contact"
+    }
+  ]
+}
