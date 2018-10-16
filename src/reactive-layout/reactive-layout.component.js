@@ -1,13 +1,9 @@
 import React, { Component, Fragment } from "react";
 import PropTypes from "prop-types";
-import "@blueprintjs/core/lib/css/blueprint.css";
-import "@blueprintjs/icons/lib/css/blueprint-icons.css";
 
 import bgDefault from "./images/bg/bg_default.jpg";
 
 import Navigation from "./components/navigation.template";
-import withData from "./services/with-data";
-import withTheme from "./services/with-theme";
 import Screen from "./components/screen.layout";
 
 class ReactiveLayout extends Component {
@@ -37,13 +33,11 @@ class ReactiveLayout extends Component {
   };
 
   scrollNext = () => {
-    console.log(this.state.selectedId);
     const selectedId = parseInt(this.state.selectedId);
     const newId = selectedId + 1;
     this.setState({
       selectedId: newId.toString(),
     });
-    console.log(newId);
     this.scroll(newId);
   };
 
@@ -78,12 +72,13 @@ class ReactiveLayout extends Component {
     return (
       <Fragment>
         <Navigation
+          id={this.props.id}
           setLanguage={setLanguage}
           navItems={texts.navItems}
           selectedId={this.state.selectedId}
           handleTabChange={this.handleTabChange}
-          bgColor={theme.nav}
-          textColor={theme.text3}
+          bgColor={theme.colors.nav}
+          textColor={theme.colors.text3}
         />
         {texts.navItems.map((navItem, index) => (
           <Screen
@@ -93,6 +88,7 @@ class ReactiveLayout extends Component {
             bg={bgs ? bgs[index] : bgDefault}
             scrollNext={this.scrollNext}
             scrollPrev={this.scrollPrev}
+            theme={theme}
           >
             {React.createElement(components[index], { texts, theme }, null)}
           </Screen>
@@ -116,6 +112,4 @@ ReactiveLayout.propTypes = {
   theme: PropTypes.object.isRequired,
 };
 
-const WithTheme = withTheme()(ReactiveLayout);
-
-export default WithTheme;
+export default ReactiveLayout;

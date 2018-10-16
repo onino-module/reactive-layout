@@ -11,6 +11,8 @@ import ReactiveLayout from "./../../src/reactive-layout/reactive-layout.componen
 import withData from "./../../src/reactive-layout/services/with-data";
 import textsFr from "./texts-fr.json";
 import textsEn from "./texts-en.json";
+import withTheme from "./../../src/reactive-layout/services/with-theme";
+import theme from "./theme";
 
 const Comp1 = () => <div> Composant 1 </div>;
 const Comp2 = () => <div> Composant 2 </div>;
@@ -28,11 +30,12 @@ const data = {
   bgs: [bg1, bg2, bg3, bg4, bg5],
 };
 
-const App = withData(data)(ReactiveLayout);
+const AppWithData = withData(data)(ReactiveLayout);
+const AppWithTheme = withTheme(theme)(AppWithData);
 document.querySelector("#demo").style.width = "100%";
 document.querySelector("#demo").style.height = "100%";
 document.querySelector("#demo").style.overflow = "hidden";
 document.body.style.margin = 0;
 document.body.style.padding = 0;
 document.body.style.overflow = "hidden";
-ReactDOM.render(<App id="demo" />, document.querySelector("#demo"));
+ReactDOM.render(<AppWithTheme id="demo" />, document.querySelector("#demo"));

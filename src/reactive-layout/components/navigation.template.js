@@ -1,14 +1,11 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-
 import styled from "styled-components";
+import { isPc } from "../api/theme-utils";
+import scrollTo from "./../api/scroll-to";
 
 import enFlag from "./../images/flags/uk.png";
 import frFlag from "./../images/flags/fr.png";
-import { isPc } from "../api/theme-utils";
-
-import scrollTo from "./../api/scroll-to";
-import { Tabs, Tab } from "@blueprintjs/core";
 
 const MOVE_BORDER_COLOR_DEFAULT = "#9A9A9A";
 
@@ -60,6 +57,17 @@ const Select = styled.select`
   color: white;
 `;
 
+const Tabs = styled.div`
+  display: ${isPc("flex", "none")};
+`;
+
+const Tab = styled.div`
+  color: ${({ theme }) => theme.colors.text3};
+  cursor: pointer;
+  padding: 5px;
+  font-weight: 900;
+`;
+
 class Navigation extends Component {
   state = {
     slectedId: "1",
@@ -78,21 +86,6 @@ class Navigation extends Component {
     });
   };
 
-  scrollRequest = e => {
-    e.preventDefault();
-    const link = e.currentTarget.dataset.link;
-    const target = document.getElementById(link);
-    scrollTo(target);
-  };
-
-  scrollToMob = e => {
-    e.preventDefault();
-    const value = e.currentTarget.value;
-    console.log(value);
-    const target = document.getElementById(value);
-    scrollTo(target);
-  };
-
   setLanguage = e => this.props.setLanguage(e.currentTarget.dataset.lng);
 
   handleTabChange = (newId, prevId, e) => {
@@ -103,7 +96,7 @@ class Navigation extends Component {
   };
 
   render() {
-    const { navItems, bgColor, handleTabChange, selectedId } = this.props;
+    const { navItems, bgColor, theme } = this.props;
     return (
       <FixedWrapper bgColor={bgColor}>
         <Container>
@@ -121,18 +114,14 @@ class Navigation extends Component {
               alt="fr flag"
             />
           </div>
-          <Tabs
-            id="navigation"
-            onChange={handleTabChange}
-            selectedTabId={selectedId}
-          >
+          <Tabs>
             {navItems.map((item, index) => {
               return (
                 <Tab
-                  data-tabIndex={index}
                   key={"navItem" + index}
                   id={index.toString()}
-                  onClick={this.scroll}
+                  onClick={() => this.scroll(index)}
+                  theme={theme}
                 >
                   {item.text}
                 </Tab>
@@ -174,6 +163,7 @@ Navigation.propTypes = {
   setLanguage: PropTypes.func.isRequired,
   bgColor: PropTypes.string,
   textColor: PropTypes.string,
+  id: PropTypes.string.isRequired,
 };
 
 export default Navigation;

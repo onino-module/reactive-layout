@@ -19,9 +19,7 @@
     "test:coverage": "nwb test-react --coverage",
     "test:watch": "nwb test-react --server"
   },
-  "dependencies": {
-    "@blueprintjs/core": "^3.0.0"
-  },
+  "dependencies": {},
   "peerDependencies": {
     "react": "16.x",
     "styled-components": "3.3.3"

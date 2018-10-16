@@ -1,39 +1,38 @@
-import React, { Component } from 'react'
+import React, { Component } from "react";
 
-import computeOptions from "./../api/compute-options.js"
-import { colors } from './../api/theme'
-import { ThemeProvider } from 'styled-components'
+import computeOptions from "./../api/compute-options.js";
+import { colors } from "./../api/theme";
+import { ThemeProvider } from "styled-components";
 
-const withTheme = () => (Wrapped) => {
+const withTheme = userTheme => Wrapped => {
   class Result extends Component {
     constructor(props) {
-      super()
+      super();
+      const _colors = userTheme.colors || colors;
       this.state = {
-        theme: { ...colors, ...computeOptions() },
-      }
+        colors: _colors,
+        options: { ...computeOptions() },
+      };
     }
 
     componentDidMount() {
-      window.addEventListener('resize', this.computeStyles)
+      window.addEventListener("resize", this.computeStyles);
     }
 
     computeStyles = () => {
-      this.setState({
-        theme: { ...colors, ...computeOptions() }
-      })
-    }
+      this.setState({ options: { ...computeOptions() } });
+    };
 
     render() {
+      const theme = { colors: this.state.colors, ...this.state.options };
       return (
-        <ThemeProvider theme={this.state.theme}>
-          <Wrapped
-            {...this.props}
-            theme={this.state.theme} />
+        <ThemeProvider theme={theme}>
+          <Wrapped {...this.props} theme={theme} />
         </ThemeProvider>
-      )
+      );
     }
   }
-  return Result
-}
+  return Result;
+};
 
-export default withTheme
+export default withTheme;
