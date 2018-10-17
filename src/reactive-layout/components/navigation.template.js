@@ -66,6 +66,7 @@ const Tab = styled.div`
   cursor: pointer;
   padding: 5px;
   font-weight: 900;
+  font-family : 'Play';
 `;
 
 class Navigation extends Component {

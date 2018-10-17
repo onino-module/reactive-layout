@@ -6,15 +6,12 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 import React, { Component, Fragment } from "react";
 import PropTypes from "prop-types";
-import "@blueprintjs/core/lib/css/blueprint.css";
-import "@blueprintjs/icons/lib/css/blueprint-icons.css";
 
 import bgDefault from "./images/bg/bg_default.jpg";
-
 import Navigation from "./components/navigation.template";
-import withData from "./services/with-data";
-import withTheme from "./services/with-theme";
 import Screen from "./components/screen.layout";
+
+import "./themes/app.css";
 
 var ReactiveLayout = function (_Component) {
   _inherits(ReactiveLayout, _Component);
@@ -41,13 +38,11 @@ var ReactiveLayout = function (_Component) {
     };
 
     _this.scrollNext = function () {
-      console.log(_this.state.selectedId);
       var selectedId = parseInt(_this.state.selectedId);
       var newId = selectedId + 1;
       _this.setState({
         selectedId: newId.toString()
       });
-      console.log(newId);
       _this.scroll(newId);
     };
 
@@ -99,12 +94,13 @@ var ReactiveLayout = function (_Component) {
       Fragment,
       null,
       React.createElement(Navigation, {
+        id: this.props.id,
         setLanguage: setLanguage,
         navItems: texts.navItems,
         selectedId: this.state.selectedId,
         handleTabChange: this.handleTabChange,
-        bgColor: theme.nav,
-        textColor: theme.text3
+        bgColor: theme.colors.nav,
+        textColor: theme.colors.text3
       }),
       texts.navItems.map(function (navItem, index) {
         return React.createElement(
@@ -115,7 +111,8 @@ var ReactiveLayout = function (_Component) {
             index: index,
             bg: bgs ? bgs[index] : bgDefault,
             scrollNext: _this2.scrollNext,
-            scrollPrev: _this2.scrollPrev
+            scrollPrev: _this2.scrollPrev,
+            theme: theme
           },
           React.createElement(components[index], { texts: texts, theme: theme }, null)
         );
@@ -140,6 +137,4 @@ ReactiveLayout.propTypes = process.env.NODE_ENV !== "production" ? {
   theme: PropTypes.object.isRequired
 } : {};
 
-var WithTheme = withTheme()(ReactiveLayout);
-
-export default WithTheme;
+export default ReactiveLayout;

@@ -3,7 +3,9 @@ var _templateObject = _taggedTemplateLiteralLoose(["\n  width: 100%;\n  position
     _templateObject3 = _taggedTemplateLiteralLoose(["\n  display: ", ";\n  justify-content: flex-end;\n  align-items: center;\n  position: relative;\n"], ["\n  display: ", ";\n  justify-content: flex-end;\n  align-items: center;\n  position: relative;\n"]),
     _templateObject4 = _taggedTemplateLiteralLoose(["\n  text-decoration: none;\n  color: ", ";\n  font-size: 1em;\n  width: 100px;\n  text-align: center;\n"], ["\n  text-decoration: none;\n  color: ", ";\n  font-size: 1em;\n  width: 100px;\n  text-align: center;\n"]),
     _templateObject5 = _taggedTemplateLiteralLoose(["\n  height: 16px;\n  margin-left: 10px;\n  cursor: pointer;\n"], ["\n  height: 16px;\n  margin-left: 10px;\n  cursor: pointer;\n"]),
-    _templateObject6 = _taggedTemplateLiteralLoose(["\n  display: ", ";\n  background-color: transparent;\n  margin-right: 10px;\n  height: 30px;\n  color: white;\n"], ["\n  display: ", ";\n  background-color: transparent;\n  margin-right: 10px;\n  height: 30px;\n  color: white;\n"]);
+    _templateObject6 = _taggedTemplateLiteralLoose(["\n  display: ", ";\n  background-color: transparent;\n  margin-right: 10px;\n  height: 30px;\n  color: white;\n"], ["\n  display: ", ";\n  background-color: transparent;\n  margin-right: 10px;\n  height: 30px;\n  color: white;\n"]),
+    _templateObject7 = _taggedTemplateLiteralLoose(["\n  display: ", ";\n"], ["\n  display: ", ";\n"]),
+    _templateObject8 = _taggedTemplateLiteralLoose(["\n  color: ", ";\n  cursor: pointer;\n  padding: 5px;\n  font-weight: 900;\n  font-family : 'Play';\n"], ["\n  color: ", ";\n  cursor: pointer;\n  padding: 5px;\n  font-weight: 900;\n  font-family : 'Play';\n"]);
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -15,15 +17,12 @@ function _taggedTemplateLiteralLoose(strings, raw) { strings.raw = raw; return s
 
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-
 import styled from "styled-components";
+import { isPc } from "../api/theme-utils";
+import scrollTo from "./../api/scroll-to";
 
 import enFlag from "./../images/flags/uk.png";
 import frFlag from "./../images/flags/fr.png";
-import { isPc } from "../api/theme-utils";
-
-import scrollTo from "./../api/scroll-to";
-import { Tabs, Tab } from "@blueprintjs/core";
 
 var MOVE_BORDER_COLOR_DEFAULT = "#9A9A9A";
 
@@ -46,6 +45,13 @@ var NavOption = NavButton.withComponent("option");
 var Flag = styled.img(_templateObject5);
 
 var Select = styled.select(_templateObject6, isPc("none", "inline"));
+
+var Tabs = styled.div(_templateObject7, isPc("flex", "none"));
+
+var Tab = styled.div(_templateObject8, function (_ref3) {
+  var theme = _ref3.theme;
+  return theme.colors.text3;
+});
 
 var Navigation = function (_Component) {
   _inherits(Navigation, _Component);
@@ -70,17 +76,6 @@ var Navigation = function (_Component) {
         left: 0,
         top: el.offsetTop
       });
-    }, _this.scrollRequest = function (e) {
-      e.preventDefault();
-      var link = e.currentTarget.dataset.link;
-      var target = document.getElementById(link);
-      scrollTo(target);
-    }, _this.scrollToMob = function (e) {
-      e.preventDefault();
-      var value = e.currentTarget.value;
-      console.log(value);
-      var target = document.getElementById(value);
-      scrollTo(target);
     }, _this.setLanguage = function (e) {
       return _this.props.setLanguage(e.currentTarget.dataset.lng);
     }, _this.handleTabChange = function (newId, prevId, e) {
@@ -97,8 +92,7 @@ var Navigation = function (_Component) {
     var _props = this.props,
         navItems = _props.navItems,
         bgColor = _props.bgColor,
-        handleTabChange = _props.handleTabChange,
-        selectedId = _props.selectedId;
+        theme = _props.theme;
 
     return React.createElement(
       FixedWrapper,
@@ -124,19 +118,17 @@ var Navigation = function (_Component) {
         ),
         React.createElement(
           Tabs,
-          {
-            id: "navigation",
-            onChange: handleTabChange,
-            selectedTabId: selectedId
-          },
+          null,
           navItems.map(function (item, index) {
             return React.createElement(
               Tab,
               {
-                "data-tabIndex": index,
                 key: "navItem" + index,
                 id: index.toString(),
-                onClick: _this2.scroll
+                onClick: function onClick() {
+                  return _this2.scroll(index);
+                },
+                theme: theme
               },
               item.text
             );
@@ -177,7 +169,8 @@ Navigation.propTypes = process.env.NODE_ENV !== "production" ? {
   })).isRequired,
   setLanguage: PropTypes.func.isRequired,
   bgColor: PropTypes.string,
-  textColor: PropTypes.string
+  textColor: PropTypes.string,
+  id: PropTypes.string.isRequired
 } : {};
 
 export default Navigation;

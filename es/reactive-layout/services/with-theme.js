@@ -6,13 +6,13 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-import React, { Component } from 'react';
+import React, { Component } from "react";
 
 import computeOptions from "./../api/compute-options.js";
-import { colors } from './../api/theme';
-import { ThemeProvider } from 'styled-components';
+import { colors } from "./../api/theme";
+import { ThemeProvider } from "styled-components";
 
-var withTheme = function withTheme() {
+var withTheme = function withTheme(userTheme) {
   return function (Wrapped) {
     var Result = function (_Component) {
       _inherits(Result, _Component);
@@ -23,27 +23,27 @@ var withTheme = function withTheme() {
         var _this = _possibleConstructorReturn(this, _Component.call(this));
 
         _this.computeStyles = function () {
-          _this.setState({
-            theme: _extends({}, colors, computeOptions())
-          });
+          _this.setState({ options: _extends({}, computeOptions()) });
         };
 
+        var _colors = userTheme.colors || colors;
         _this.state = {
-          theme: _extends({}, colors, computeOptions())
+          colors: _colors,
+          options: _extends({}, computeOptions())
         };
         return _this;
       }
 
       Result.prototype.componentDidMount = function componentDidMount() {
-        window.addEventListener('resize', this.computeStyles);
+        window.addEventListener("resize", this.computeStyles);
       };
 
       Result.prototype.render = function render() {
+        var theme = _extends({ colors: this.state.colors }, this.state.options);
         return React.createElement(
           ThemeProvider,
-          { theme: this.state.theme },
-          React.createElement(Wrapped, _extends({}, this.props, {
-            theme: this.state.theme }))
+          { theme: theme },
+          React.createElement(Wrapped, _extends({}, this.props, { theme: theme }))
         );
       };
 

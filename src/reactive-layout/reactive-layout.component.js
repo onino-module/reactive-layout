@@ -2,9 +2,10 @@ import React, { Component, Fragment } from "react";
 import PropTypes from "prop-types";
 
 import bgDefault from "./images/bg/bg_default.jpg";
-
 import Navigation from "./components/navigation.template";
 import Screen from "./components/screen.layout";
+
+import "./themes/app.css"
 
 class ReactiveLayout extends Component {
   constructor() {
