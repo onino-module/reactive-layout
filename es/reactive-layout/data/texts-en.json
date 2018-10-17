@@ -1,0 +1,16 @@
+{
+  "navItems": [
+    {
+      "text": "PAGE 1",
+      "link": "page1"
+    },
+    {
+      "text": "PAGE 2",
+      "link": "page 2"
+    },
+    {
+      "text": "PAGE 3",
+      "link": "page3"
+    }
+  ]
+}
