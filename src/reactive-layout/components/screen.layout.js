@@ -19,6 +19,7 @@ const Container = styled.section.attrs({
   width: ${({ theme }) => theme["screen-width"] + "px"};
   height: ${({ theme }) => theme["screen-height"] + "px"};
   overflow: hidden;
+  width: 100vw;
 `;
 
 const ChildBox = styled.div`
@@ -26,6 +27,7 @@ const ChildBox = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  width: 100vw;
 `;
 
 Container.defaultProps = {
