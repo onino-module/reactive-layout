@@ -354,7 +354,7 @@ var navigation_template_Navigation = function (_Component) {
                 },
                 theme: theme
               },
-              item.text
+              item
             );
           })
         ),
@@ -370,7 +370,7 @@ var navigation_template_Navigation = function (_Component) {
                 "data-link": item,
                 value: item
               },
-              item.text
+              item
             );
           })
         )

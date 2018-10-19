@@ -116,7 +116,7 @@ var Navigation = function (_Component) {
                 },
                 theme: theme
               },
-              item.text
+              item
             );
           })
         ),
@@ -132,7 +132,7 @@ var Navigation = function (_Component) {
                 "data-link": item,
                 value: item
               },
-              item.text
+              item
             );
           })
         )
