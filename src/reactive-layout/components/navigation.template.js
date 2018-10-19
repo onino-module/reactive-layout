@@ -91,7 +91,7 @@ class Navigation extends Component {
                   onClick={() => this.scroll(index)}
                   theme={theme}
                 >
-                  {item.text}
+                  {item}
                 </div>
               );
             })}
@@ -105,7 +105,7 @@ class Navigation extends Component {
                   data-link={item}
                   value={item}
                 >
-                  {item.text}
+                  {item}
                 </option>
               );
             })}
