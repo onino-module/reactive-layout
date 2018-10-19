@@ -82,7 +82,8 @@ var ReactiveLayout = function (_Component) {
 
     var _props = this.props,
         navItems = _props.navItems,
-        components = _props.components;
+        components = _props.components,
+        navBarStyles = _props.navBarStyles;
 
     return React.createElement(
       Fragment,
@@ -91,7 +92,8 @@ var ReactiveLayout = function (_Component) {
         id: this.props.id,
         navItems: navItems,
         selectedId: this.state.selectedId,
-        handleTabChange: this.handleTabChange
+        handleTabChange: this.handleTabChange,
+        styles: navBarStyles || {}
       }),
       navItems.map(function (navItem, index) {
         return React.createElement(
@@ -115,7 +117,8 @@ var ReactiveLayout = function (_Component) {
 ReactiveLayout.propTypes = process.env.NODE_ENV !== "production" ? {
   id: PropTypes.string.isRequired,
   navItems: PropTypes.array.isRequired,
-  components: PropTypes.array.isRequired
+  components: PropTypes.array.isRequired,
+  navBarStyles: PropTypes.object
 } : {};
 
 export default ReactiveLayout;

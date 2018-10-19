@@ -1,3 +1,5 @@
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
@@ -7,13 +9,13 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 
-var fixedWrapperStyle = {
+var fixedContainerStyle = {
   width: "100%",
   position: "fixed",
   top: "0"
 };
 
-var containerStyle = {
+var centeredContainerStyle = {
   display: "flex",
   width: "100%",
   maxWidth: "1080px",
@@ -45,8 +47,7 @@ var selectStyle = {
 var navButtonStyle = {
   cursor: "pointer",
   padding: "5px",
-  fontWeight: "900",
-  fontFamily: "Play"
+  fontWeight: "900"
 };
 
 var Navigation = function (_Component) {
@@ -87,24 +88,27 @@ var Navigation = function (_Component) {
 
     var _props = this.props,
         navItems = _props.navItems,
-        theme = _props.theme;
+        theme = _props.theme,
+        styles = _props.styles;
 
-
+    var _fixedContainerStyle = _extends({}, fixedContainerStyle, styles.fixedContainer);
+    var _navButtonStyle = _extends({}, navButtonStyle, styles.navButton);
+    var _rightWrapperStyle = _extends({}, rightWrapperStyle, styles.rightWrapper);
     return React.createElement(
       "div",
-      { style: fixedWrapperStyle },
+      { style: _fixedContainerStyle },
       React.createElement(
         "div",
-        { style: containerStyle },
+        { style: centeredContainerStyle },
         React.createElement("div", null),
         React.createElement(
           "div",
-          { style: rightWrapperStyle },
+          { style: _rightWrapperStyle },
           navItems.map(function (item, index) {
             return React.createElement(
               "div",
               {
-                style: navButtonStyle,
+                style: _navButtonStyle,
                 key: "navItem" + index,
                 id: index.toString(),
                 onClick: function onClick() {
@@ -144,7 +148,8 @@ Navigation.propTypes = process.env.NODE_ENV !== "production" ? {
     link: PropTypes.string.isRequired,
     text: PropTypes.string.isRequired
   })).isRequired,
-  id: PropTypes.string.isRequired
+  id: PropTypes.string.isRequired,
+  styles: PropTypes.object
 } : {};
 
 export default Navigation;

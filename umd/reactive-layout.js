@@ -236,6 +236,8 @@ var prop_types = __webpack_require__(1);
 var prop_types_default = /*#__PURE__*/__webpack_require__.n(prop_types);
 
 // CONCATENATED MODULE: ./src/reactive-layout/components/navigation.template.js
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
@@ -245,13 +247,13 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 
 
 
-var fixedWrapperStyle = {
+var fixedContainerStyle = {
   width: "100%",
   position: "fixed",
   top: "0"
 };
 
-var containerStyle = {
+var centeredContainerStyle = {
   display: "flex",
   width: "100%",
   maxWidth: "1080px",
@@ -283,8 +285,7 @@ var selectStyle = {
 var navButtonStyle = {
   cursor: "pointer",
   padding: "5px",
-  fontWeight: "900",
-  fontFamily: "Play"
+  fontWeight: "900"
 };
 
 var navigation_template_Navigation = function (_Component) {
@@ -325,24 +326,27 @@ var navigation_template_Navigation = function (_Component) {
 
     var _props = this.props,
         navItems = _props.navItems,
-        theme = _props.theme;
+        theme = _props.theme,
+        styles = _props.styles;
 
-
+    var _fixedContainerStyle = _extends({}, fixedContainerStyle, styles.fixedContainer);
+    var _navButtonStyle = _extends({}, navButtonStyle, styles.navButton);
+    var _rightWrapperStyle = _extends({}, rightWrapperStyle, styles.rightWrapper);
     return external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
       "div",
-      { style: fixedWrapperStyle },
+      { style: _fixedContainerStyle },
       external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
         "div",
-        { style: containerStyle },
+        { style: centeredContainerStyle },
         external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement("div", null),
         external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
           "div",
-          { style: rightWrapperStyle },
+          { style: _rightWrapperStyle },
           navItems.map(function (item, index) {
             return external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
               "div",
               {
-                style: navButtonStyle,
+                style: _navButtonStyle,
                 key: "navItem" + index,
                 id: index.toString(),
                 onClick: function onClick() {
@@ -382,7 +386,8 @@ navigation_template_Navigation.propTypes = {
     link: prop_types_default.a.string.isRequired,
     text: prop_types_default.a.string.isRequired
   })).isRequired,
-  id: prop_types_default.a.string.isRequired
+  id: prop_types_default.a.string.isRequired,
+  styles: prop_types_default.a.object
 };
 
 /* harmony default export */ var navigation_template = (navigation_template_Navigation);
@@ -391,7 +396,7 @@ var up = __webpack_require__(2);
 var up_default = /*#__PURE__*/__webpack_require__.n(up);
 
 // CONCATENATED MODULE: ./src/reactive-layout/components/scroll-top/nav-buttons.component.js
-var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+var nav_buttons_component_extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 function nav_buttons_component_classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -403,7 +408,7 @@ function nav_buttons_component_inherits(subClass, superClass) { if (typeof super
 
 
 
-var nav_buttons_component_containerStyle = {
+var containerStyle = {
   display: "flex",
   justifyContent: "center",
   alignItems: "center",
@@ -420,7 +425,7 @@ var leftScrollButtonStyle = {
   margin: "0px 5px 0px 5px"
 };
 
-var rightScrollButtonStyle = _extends({}, leftScrollButtonStyle, {
+var rightScrollButtonStyle = nav_buttons_component_extends({}, leftScrollButtonStyle, {
   transform: "rotate(180deg)"
 });
 
@@ -470,7 +475,7 @@ var nav_buttons_component_NavButtons = function (_Component) {
     var isLast = this.props.index === this.state.totalLength;
     return external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
       "div",
-      { style: nav_buttons_component_containerStyle },
+      { style: containerStyle },
       !isFirst && external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement("div", { style: leftScrollButtonStyle, onClick: this.props.scrollPrev }),
       !isLast && external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement("div", { style: rightScrollButtonStyle, onClick: this.props.scrollNext })
     );
@@ -627,7 +632,8 @@ var reactive_layout_component_ReactiveLayout = function (_Component) {
 
     var _props = this.props,
         navItems = _props.navItems,
-        components = _props.components;
+        components = _props.components,
+        navBarStyles = _props.navBarStyles;
 
     return external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
       external_root_React_commonjs2_react_commonjs_react_amd_react_["Fragment"],
@@ -636,7 +642,8 @@ var reactive_layout_component_ReactiveLayout = function (_Component) {
         id: this.props.id,
         navItems: navItems,
         selectedId: this.state.selectedId,
-        handleTabChange: this.handleTabChange
+        handleTabChange: this.handleTabChange,
+        styles: navBarStyles || {}
       }),
       navItems.map(function (navItem, index) {
         return external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
@@ -660,7 +667,8 @@ var reactive_layout_component_ReactiveLayout = function (_Component) {
 reactive_layout_component_ReactiveLayout.propTypes = {
   id: prop_types_default.a.string.isRequired,
   navItems: prop_types_default.a.array.isRequired,
-  components: prop_types_default.a.array.isRequired
+  components: prop_types_default.a.array.isRequired,
+  navBarStyles: prop_types_default.a.object
 };
 
 /* harmony default export */ var reactive_layout_component = (reactive_layout_component_ReactiveLayout);
