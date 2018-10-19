@@ -1,11 +1,8 @@
 import React, { Component, Fragment } from "react";
 import PropTypes from "prop-types";
 
-import bgDefault from "./images/bg/bg_default.jpg";
 import Navigation from "./components/navigation.template";
 import Screen from "./components/screen.layout";
-
-import "./themes/app.css"
 
 class ReactiveLayout extends Component {
   constructor() {
@@ -69,29 +66,24 @@ class ReactiveLayout extends Component {
   };
 
   render() {
-    const { setLanguage, texts, theme, components, bgs } = this.props;
+    const { navItems, components } = this.props;
     return (
       <Fragment>
         <Navigation
           id={this.props.id}
-          setLanguage={setLanguage}
-          navItems={texts.navItems}
+          navItems={navItems}
           selectedId={this.state.selectedId}
           handleTabChange={this.handleTabChange}
-          bgColor={theme.colors.nav}
-          textColor={theme.colors.text3}
         />
-        {texts.navItems.map((navItem, index) => (
+        {navItems.map((navItem, index) => (
           <Screen
             key={this.props.id + index}
             id={this.props.id}
             index={index}
-            bg={bgs ? bgs[index] : bgDefault}
             scrollNext={this.scrollNext}
             scrollPrev={this.scrollPrev}
-            theme={theme}
           >
-            {React.createElement(components[index], { texts, theme }, null)}
+            {React.createElement(components[index])}
           </Screen>
         ))}
       </Fragment>
@@ -99,18 +91,10 @@ class ReactiveLayout extends Component {
   }
 }
 
-ReactiveLayout.defaultProps = {
-  id: "recative-layout",
-};
-
 ReactiveLayout.propTypes = {
-  infos: PropTypes.any,
-  experiences: PropTypes.any,
-  formations: PropTypes.any,
-  skills: PropTypes.any,
-  texts: PropTypes.object.isRequired,
-  setLanguage: PropTypes.func,
-  theme: PropTypes.object.isRequired,
+  id: PropTypes.string.isRequired,
+  navItems: PropTypes.array.isRequired,
+  components: PropTypes.array.isRequired,
 };
 
 export default ReactiveLayout;

@@ -1,6 +1,4 @@
-var _templateObject = _taggedTemplateLiteralLoose(["\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  height: auto;\n  padding-bottom: 20px;\n  width: 100%;\n"], ["\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  height: auto;\n  padding-bottom: 20px;\n  width: 100%;\n"]),
-    _templateObject2 = _taggedTemplateLiteralLoose(["\n  background: url(", ");\n  width: 48px;\n  height: 48px;\n  cursor: pointer;\n  margin: 0px 5px 0px 5px;\n"], ["\n  background: url(", ");\n  width: 48px;\n  height: 48px;\n  cursor: pointer;\n  margin: 0px 5px 0px 5px;\n"]),
-    _templateObject3 = _taggedTemplateLiteralLoose(["\n  transform: rotate(180deg);\n"], ["\n  transform: rotate(180deg);\n"]);
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -8,19 +6,30 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-function _taggedTemplateLiteralLoose(strings, raw) { strings.raw = raw; return strings; }
-
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-
 import up from "./up.png";
-import styled from "styled-components";
 
-var Container = styled.div(_templateObject);
+var containerStyle = {
+  display: "flex",
+  justifyContent: "center",
+  alignItems: "center",
+  height: "auto",
+  paddingBottom: "20px",
+  width: "100%"
+};
 
-var ArrowUp = styled.div(_templateObject2, up);
+var leftScrollButtonStyle = {
+  background: "url(" + up + ")",
+  width: "48px",
+  height: "48px",
+  cursor: "pointer",
+  margin: "0px 5px 0px 5px"
+};
 
-var ArrowDown = ArrowUp.extend(_templateObject3);
+var rightScrollButtonStyle = _extends({}, leftScrollButtonStyle, {
+  transform: "rotate(180deg)"
+});
 
 var NavButtons = function (_Component) {
   _inherits(NavButtons, _Component);
@@ -67,10 +76,10 @@ var NavButtons = function (_Component) {
     var isFirst = this.props.index === 0;
     var isLast = this.props.index === this.state.totalLength;
     return React.createElement(
-      Container,
-      null,
-      !isFirst && React.createElement(ArrowUp, { onClick: this.props.scrollPrev }),
-      !isLast && React.createElement(ArrowDown, { onClick: this.props.scrollNext })
+      "div",
+      { style: containerStyle },
+      !isFirst && React.createElement("div", { style: leftScrollButtonStyle, onClick: this.props.scrollPrev }),
+      !isLast && React.createElement("div", { style: rightScrollButtonStyle, onClick: this.props.scrollNext })
     );
   };
 

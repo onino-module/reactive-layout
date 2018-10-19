@@ -7,11 +7,8 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 import React, { Component, Fragment } from "react";
 import PropTypes from "prop-types";
 
-import bgDefault from "./images/bg/bg_default.jpg";
 import Navigation from "./components/navigation.template";
 import Screen from "./components/screen.layout";
-
-import "./themes/app.css";
 
 var ReactiveLayout = function (_Component) {
   _inherits(ReactiveLayout, _Component);
@@ -84,37 +81,29 @@ var ReactiveLayout = function (_Component) {
     var _this2 = this;
 
     var _props = this.props,
-        setLanguage = _props.setLanguage,
-        texts = _props.texts,
-        theme = _props.theme,
-        components = _props.components,
-        bgs = _props.bgs;
+        navItems = _props.navItems,
+        components = _props.components;
 
     return React.createElement(
       Fragment,
       null,
       React.createElement(Navigation, {
         id: this.props.id,
-        setLanguage: setLanguage,
-        navItems: texts.navItems,
+        navItems: navItems,
         selectedId: this.state.selectedId,
-        handleTabChange: this.handleTabChange,
-        bgColor: theme.colors.nav,
-        textColor: theme.colors.text3
+        handleTabChange: this.handleTabChange
       }),
-      texts.navItems.map(function (navItem, index) {
+      navItems.map(function (navItem, index) {
         return React.createElement(
           Screen,
           {
             key: _this2.props.id + index,
             id: _this2.props.id,
             index: index,
-            bg: bgs ? bgs[index] : bgDefault,
             scrollNext: _this2.scrollNext,
-            scrollPrev: _this2.scrollPrev,
-            theme: theme
+            scrollPrev: _this2.scrollPrev
           },
-          React.createElement(components[index], { texts: texts, theme: theme }, null)
+          React.createElement(components[index])
         );
       })
     );
@@ -123,18 +112,10 @@ var ReactiveLayout = function (_Component) {
   return ReactiveLayout;
 }(Component);
 
-ReactiveLayout.defaultProps = {
-  id: "recative-layout"
-};
-
 ReactiveLayout.propTypes = process.env.NODE_ENV !== "production" ? {
-  infos: PropTypes.any,
-  experiences: PropTypes.any,
-  formations: PropTypes.any,
-  skills: PropTypes.any,
-  texts: PropTypes.object.isRequired,
-  setLanguage: PropTypes.func,
-  theme: PropTypes.object.isRequired
+  id: PropTypes.string.isRequired,
+  navItems: PropTypes.array.isRequired,
+  components: PropTypes.array.isRequired
 } : {};
 
 export default ReactiveLayout;

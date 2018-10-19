@@ -12,7 +12,7 @@ var computeOptions = function computeOptions() {
   }
 
   var opt = {
-    "device": x < 1080 || isMobile ? "mobile" : "pc",
+    device: x < 1080 || isMobile ? "mobile" : "pc",
     "screen-height": y,
     "screen-width": x
   };

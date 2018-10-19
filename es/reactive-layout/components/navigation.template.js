@@ -1,57 +1,53 @@
-var _templateObject = _taggedTemplateLiteralLoose(["\n  width: 100%;\n  position: fixed;\n  top: 0;\n  background-color: ", ";\n"], ["\n  width: 100%;\n  position: fixed;\n  top: 0;\n  background-color: ", ";\n"]),
-    _templateObject2 = _taggedTemplateLiteralLoose(["\n  display: flex;\n  width: 100%;\n  justify-content: space-between;\n  align-items: center;\n  height: 45px;\n  max-width: 1080px;\n  margin: auto;\n"], ["\n  display: flex;\n  width: 100%;\n  justify-content: space-between;\n  align-items: center;\n  height: 45px;\n  max-width: 1080px;\n  margin: auto;\n"]),
-    _templateObject3 = _taggedTemplateLiteralLoose(["\n  display: ", ";\n  justify-content: flex-end;\n  align-items: center;\n  position: relative;\n"], ["\n  display: ", ";\n  justify-content: flex-end;\n  align-items: center;\n  position: relative;\n"]),
-    _templateObject4 = _taggedTemplateLiteralLoose(["\n  text-decoration: none;\n  color: ", ";\n  font-size: 1em;\n  width: 100px;\n  text-align: center;\n"], ["\n  text-decoration: none;\n  color: ", ";\n  font-size: 1em;\n  width: 100px;\n  text-align: center;\n"]),
-    _templateObject5 = _taggedTemplateLiteralLoose(["\n  height: 16px;\n  margin-left: 10px;\n  cursor: pointer;\n"], ["\n  height: 16px;\n  margin-left: 10px;\n  cursor: pointer;\n"]),
-    _templateObject6 = _taggedTemplateLiteralLoose(["\n  display: ", ";\n  background-color: transparent;\n  margin-right: 10px;\n  height: 30px;\n  color: white;\n"], ["\n  display: ", ";\n  background-color: transparent;\n  margin-right: 10px;\n  height: 30px;\n  color: white;\n"]),
-    _templateObject7 = _taggedTemplateLiteralLoose(["\n  display: ", ";\n"], ["\n  display: ", ";\n"]),
-    _templateObject8 = _taggedTemplateLiteralLoose(["\n  color: ", ";\n  cursor: pointer;\n  padding: 5px;\n  font-weight: 900;\n  font-family : 'Play';\n"], ["\n  color: ", ";\n  cursor: pointer;\n  padding: 5px;\n  font-weight: 900;\n  font-family : 'Play';\n"]);
-
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-function _taggedTemplateLiteralLoose(strings, raw) { strings.raw = raw; return strings; }
-
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import styled from "styled-components";
-import { isPc } from "../api/theme-utils";
-import scrollTo from "./../api/scroll-to";
 
-import enFlag from "./../images/flags/uk.png";
-import frFlag from "./../images/flags/fr.png";
+var fixedWrapperStyle = {
+  width: "100%",
+  position: "fixed",
+  top: "0"
+};
 
-var MOVE_BORDER_COLOR_DEFAULT = "#9A9A9A";
+var containerStyle = {
+  display: "flex",
+  width: "100%",
+  maxWidth: "1080px",
+  justifyContent: "space-between",
+  alignItems: "center",
+  height: "45px",
+  margin: "auto"
+};
 
-var FixedWrapper = styled.div(_templateObject, function (_ref) {
-  var bgColor = _ref.bgColor;
-  return bgColor;
-});
+var rightWrapperStyle = {
+  display: "flex"
+};
 
-var Container = styled.div(_templateObject2);
+var navOptionStyle = {
+  textDecoration: "none",
+  fontSize: "1em",
+  width: "100px",
+  textAlign: "center"
+};
 
-var Nav = styled.nav(_templateObject3, isPc("flex", "none"));
+var selectStyle = {
+  backgroundColor: "transparent",
+  marginRight: "10px",
+  height: "30px",
+  color: "white",
+  display: "none"
+};
 
-var NavButton = styled.a(_templateObject4, function (_ref2) {
-  var textColor = _ref2.textColor;
-  return textColor;
-});
-
-var NavOption = NavButton.withComponent("option");
-
-var Flag = styled.img(_templateObject5);
-
-var Select = styled.select(_templateObject6, isPc("none", "inline"));
-
-var Tabs = styled.div(_templateObject7, isPc("flex", "none"));
-
-var Tab = styled.div(_templateObject8, function (_ref3) {
-  var theme = _ref3.theme;
-  return theme.colors.text3;
-});
+var navButtonStyle = {
+  cursor: "pointer",
+  padding: "5px",
+  fontWeight: "900",
+  fontFamily: "Play"
+};
 
 var Navigation = function (_Component) {
   _inherits(Navigation, _Component);
@@ -78,7 +74,7 @@ var Navigation = function (_Component) {
       });
     }, _this.setLanguage = function (e) {
       return _this.props.setLanguage(e.currentTarget.dataset.lng);
-    }, _this.handleTabChange = function (newId, prevId, e) {
+    }, _this.handledivChange = function (newId, prevId, e) {
       _this.setState({
         selectedId: newId
       });
@@ -91,38 +87,24 @@ var Navigation = function (_Component) {
 
     var _props = this.props,
         navItems = _props.navItems,
-        bgColor = _props.bgColor,
         theme = _props.theme;
 
+
     return React.createElement(
-      FixedWrapper,
-      { bgColor: bgColor },
+      "div",
+      { style: fixedWrapperStyle },
       React.createElement(
-        Container,
-        null,
+        "div",
+        { style: containerStyle },
+        React.createElement("div", null),
         React.createElement(
           "div",
-          null,
-          React.createElement(Flag, {
-            src: enFlag,
-            "data-lng": "en",
-            onClick: this.setLanguage,
-            alt: "uk flag"
-          }),
-          React.createElement(Flag, {
-            src: frFlag,
-            "data-lng": "fr",
-            onClick: this.setLanguage,
-            alt: "fr flag"
-          })
-        ),
-        React.createElement(
-          Tabs,
-          null,
+          { style: rightWrapperStyle },
           navItems.map(function (item, index) {
             return React.createElement(
-              Tab,
+              "div",
               {
+                style: navButtonStyle,
                 key: "navItem" + index,
                 id: index.toString(),
                 onClick: function onClick() {
@@ -135,12 +117,13 @@ var Navigation = function (_Component) {
           })
         ),
         React.createElement(
-          Select,
-          { onChange: this.scrollToMob },
+          "select",
+          { style: selectStyle, onChange: this.scrollToMob },
           navItems.map(function (item, index) {
             return React.createElement(
-              NavOption,
+              "option",
               {
+                style: navOptionStyle,
                 key: "menuItem" + index,
                 "data-link": item,
                 value: item
@@ -156,20 +139,11 @@ var Navigation = function (_Component) {
   return Navigation;
 }(Component);
 
-Navigation.defaultProps = {
-  bgColor: "none",
-  textColor: "white",
-  borderColor: MOVE_BORDER_COLOR_DEFAULT
-};
-
 Navigation.propTypes = process.env.NODE_ENV !== "production" ? {
   navItems: PropTypes.arrayOf(PropTypes.shape({
     link: PropTypes.string.isRequired,
     text: PropTypes.string.isRequired
   })).isRequired,
-  setLanguage: PropTypes.func.isRequired,
-  bgColor: PropTypes.string,
-  textColor: PropTypes.string,
   id: PropTypes.string.isRequired
 } : {};
 
