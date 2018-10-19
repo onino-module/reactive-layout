@@ -1,13 +1,13 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 
-const fixedWrapperStyle = {
+const fixedContainerStyle = {
   width: "100%",
   position: "fixed",
   top: "0",
 };
 
-const containerStyle = {
+const centeredContainerStyle = {
   display: "flex",
   width: "100%",
   maxWidth: "1080px",
@@ -40,7 +40,6 @@ const navButtonStyle = {
   cursor: "pointer",
   padding: "5px",
   fontWeight: "900",
-  fontFamily: "Play",
 };
 
 class Navigation extends Component {
@@ -71,17 +70,22 @@ class Navigation extends Component {
   };
 
   render() {
-    const { navItems, theme } = this.props;
-
+    const { navItems, theme, styles } = this.props;
+    const _fixedContainerStyle = {
+      ...fixedContainerStyle,
+      ...styles.fixedContainer,
+    };
+    const _navButtonStyle = { ...navButtonStyle, ...styles.navButton };
+    const _rightWrapperStyle = { ...rightWrapperStyle, ...styles.rightWrapper };
     return (
-      <div style={fixedWrapperStyle}>
-        <div style={containerStyle}>
+      <div style={_fixedContainerStyle}>
+        <div style={centeredContainerStyle}>
           <div />
-          <div style={rightWrapperStyle}>
+          <div style={_rightWrapperStyle}>
             {navItems.map((item, index) => {
               return (
                 <div
-                  style={navButtonStyle}
+                  style={_navButtonStyle}
                   key={"navItem" + index}
                   id={index.toString()}
                   onClick={() => this.scroll(index)}
@@ -120,6 +124,7 @@ Navigation.propTypes = {
     }),
   ).isRequired,
   id: PropTypes.string.isRequired,
+  styles: PropTypes.object,
 };
 
 export default Navigation;

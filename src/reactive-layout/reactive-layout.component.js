@@ -66,7 +66,7 @@ class ReactiveLayout extends Component {
   };
 
   render() {
-    const { navItems, components } = this.props;
+    const { navItems, components, navBarStyles } = this.props;
     return (
       <Fragment>
         <Navigation
@@ -74,6 +74,7 @@ class ReactiveLayout extends Component {
           navItems={navItems}
           selectedId={this.state.selectedId}
           handleTabChange={this.handleTabChange}
+          styles={navBarStyles || {}}
         />
         {navItems.map((navItem, index) => (
           <Screen
@@ -95,6 +96,7 @@ ReactiveLayout.propTypes = {
   id: PropTypes.string.isRequired,
   navItems: PropTypes.array.isRequired,
   components: PropTypes.array.isRequired,
+  navBarStyles: PropTypes.object,
 };
 
 export default ReactiveLayout;
