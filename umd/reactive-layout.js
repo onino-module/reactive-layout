@@ -372,7 +372,12 @@ var navigation_template_Navigation = function (_Component) {
         ),
         external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
           "select",
-          { style: _selectStyle, onChange: this.scrollToMob },
+          {
+            style: _selectStyle,
+            onChange: function onChange(e) {
+              return _this2.scroll(Number(e.currentTarget.value));
+            }
+          },
           navItems.map(function (item, index) {
             return external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
               "option",
@@ -380,7 +385,7 @@ var navigation_template_Navigation = function (_Component) {
                 style: navOptionStyle,
                 key: "menuItem" + index,
                 "data-link": item,
-                value: item
+                value: index
               },
               item
             );
@@ -533,7 +538,7 @@ var childBoxStyle = {
 
 var screen_layout_Screen = function Screen(_ref) {
   var index = _ref.index,
-      noNav = _ref.noNav,
+      hideBottomNav = _ref.hideBottomNav,
       children = _ref.children,
       scrollNext = _ref.scrollNext,
       scrollPrev = _ref.scrollPrev,
@@ -555,7 +560,7 @@ var screen_layout_Screen = function Screen(_ref) {
       { style: screen_layout_extends({}, childBoxStyle, newStyles) },
       children || external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement("div", null)
     ),
-    !noNav && external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(nav_buttons_component, {
+    !hideBottomNav && external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(nav_buttons_component, {
       index: index,
       scrollNext: scrollNext,
       scrollPrev: scrollPrev,
@@ -566,7 +571,7 @@ var screen_layout_Screen = function Screen(_ref) {
 
 screen_layout_Screen.propTypes = {
   index: prop_types_default.a.number.isRequired,
-  noNav: prop_types_default.a.bool,
+  hideBottomNav: prop_types_default.a.bool,
   children: prop_types_default.a.any,
   id: prop_types_default.a.string.isRequired,
   bg: prop_types_default.a.shape({
@@ -704,10 +709,13 @@ var reactive_layout_component_ReactiveLayout = function (_Component) {
         components = _props.components,
         navBarStyles = _props.navBarStyles,
         bgs = _props.bgs,
-        isNavVisible = _props.isNavVisible;
+        isNavVisible = _props.isNavVisible,
+        hideBottomNav = _props.hideBottomNav;
 
     var addProps = {
-      screenOptions: this.state.screenOptions
+      screenOptions: this.state.screenOptions,
+      scrollPrev: this.scrollPrev,
+      scrollNext: this.scrollNext
     };
     return external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
       external_root_React_commonjs2_react_commonjs_react_amd_react_["Fragment"],
@@ -731,7 +739,8 @@ var reactive_layout_component_ReactiveLayout = function (_Component) {
             bg: bgs[index] || {},
             scrollNext: _this3.scrollNext,
             scrollPrev: _this3.scrollPrev,
-            screenOptions: _this3.state.screenOptions
+            screenOptions: _this3.state.screenOptions,
+            hideBottomNav: hideBottomNav
           },
           external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(components[index], addProps, null)
         );
@@ -744,11 +753,13 @@ var reactive_layout_component_ReactiveLayout = function (_Component) {
 
 reactive_layout_component_ReactiveLayout.defaultProps = {
   bgs: [],
-  isNavVisible: true
+  isNavVisible: true,
+  hideBottomNav: false
 };
 
 reactive_layout_component_ReactiveLayout.propTypes = {
   id: prop_types_default.a.string.isRequired,
+  hideBottomNav: prop_types_default.a.bool.isRequired,
   isNavVisible: prop_types_default.a.bool.isRequired,
   navItems: prop_types_default.a.array.isRequired,
   components: prop_types_default.a.array.isRequired,

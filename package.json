@@ -21,8 +21,7 @@
   },
   "dependencies": {},
   "peerDependencies": {
-    "react": "16.x",
-    "styled-components": "3.3.3"
+    "react": "16.x"
   },
   "devDependencies": {
     "eslint-config-standard-jsx": "^6.0.2",

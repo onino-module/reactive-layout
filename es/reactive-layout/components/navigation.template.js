@@ -134,7 +134,12 @@ var Navigation = function (_Component) {
         ),
         React.createElement(
           "select",
-          { style: _selectStyle, onChange: this.scrollToMob },
+          {
+            style: _selectStyle,
+            onChange: function onChange(e) {
+              return _this2.scroll(Number(e.currentTarget.value));
+            }
+          },
           navItems.map(function (item, index) {
             return React.createElement(
               "option",
@@ -142,7 +147,7 @@ var Navigation = function (_Component) {
                 style: navOptionStyle,
                 key: "menuItem" + index,
                 "data-link": item,
-                value: item
+                value: index
               },
               item
             );

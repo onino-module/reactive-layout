@@ -27,7 +27,7 @@ var childBoxStyle = {
 
 var Screen = function Screen(_ref) {
   var index = _ref.index,
-      noNav = _ref.noNav,
+      hideBottomNav = _ref.hideBottomNav,
       children = _ref.children,
       scrollNext = _ref.scrollNext,
       scrollPrev = _ref.scrollPrev,
@@ -49,7 +49,7 @@ var Screen = function Screen(_ref) {
       { style: _extends({}, childBoxStyle, newStyles) },
       children || React.createElement("div", null)
     ),
-    !noNav && React.createElement(NavButtons, {
+    !hideBottomNav && React.createElement(NavButtons, {
       index: index,
       scrollNext: scrollNext,
       scrollPrev: scrollPrev,
@@ -60,7 +60,7 @@ var Screen = function Screen(_ref) {
 
 Screen.propTypes = process.env.NODE_ENV !== "production" ? {
   index: PropTypes.number.isRequired,
-  noNav: PropTypes.bool,
+  hideBottomNav: PropTypes.bool,
   children: PropTypes.any,
   id: PropTypes.string.isRequired,
   bg: PropTypes.shape({

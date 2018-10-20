@@ -97,10 +97,13 @@ var ReactiveLayout = function (_Component) {
         components = _props.components,
         navBarStyles = _props.navBarStyles,
         bgs = _props.bgs,
-        isNavVisible = _props.isNavVisible;
+        isNavVisible = _props.isNavVisible,
+        hideBottomNav = _props.hideBottomNav;
 
     var addProps = {
-      screenOptions: this.state.screenOptions
+      screenOptions: this.state.screenOptions,
+      scrollPrev: this.scrollPrev,
+      scrollNext: this.scrollNext
     };
     return React.createElement(
       Fragment,
@@ -124,7 +127,8 @@ var ReactiveLayout = function (_Component) {
             bg: bgs[index] || {},
             scrollNext: _this3.scrollNext,
             scrollPrev: _this3.scrollPrev,
-            screenOptions: _this3.state.screenOptions
+            screenOptions: _this3.state.screenOptions,
+            hideBottomNav: hideBottomNav
           },
           React.createElement(components[index], addProps, null)
         );
@@ -137,11 +141,13 @@ var ReactiveLayout = function (_Component) {
 
 ReactiveLayout.defaultProps = {
   bgs: [],
-  isNavVisible: true
+  isNavVisible: true,
+  hideBottomNav: false
 };
 
 ReactiveLayout.propTypes = process.env.NODE_ENV !== "production" ? {
   id: PropTypes.string.isRequired,
+  hideBottomNav: PropTypes.bool.isRequired,
   isNavVisible: PropTypes.bool.isRequired,
   navItems: PropTypes.array.isRequired,
   components: PropTypes.array.isRequired,
