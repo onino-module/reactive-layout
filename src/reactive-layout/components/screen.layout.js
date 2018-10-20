@@ -23,7 +23,16 @@ const childBoxStyle = {
   // height: "100%",
 };
 
-const Screen = ({ index, noNav, children, scrollNext, scrollPrev, id, bg }) => {
+const Screen = ({
+  index,
+  noNav,
+  children,
+  scrollNext,
+  scrollPrev,
+  id,
+  bg,
+  screenOptions,
+}) => {
   const newStyles = {
     backgroundColor: bg.color || "transparent",
     backgroundImage: `url(${bg.img})` || "none",
@@ -56,6 +65,7 @@ Screen.propTypes = {
     img: PropTypes.string,
     color: PropTypes.string,
   }),
+  screenOptions: PropTypes.object,
 };
 
 export default Screen;

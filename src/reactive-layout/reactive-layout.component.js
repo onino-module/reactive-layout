@@ -3,6 +3,7 @@ import PropTypes from "prop-types";
 
 import Navigation from "./components/navigation.template";
 import Screen from "./components/screen.layout";
+import computeOptions from "./services/compute-options";
 
 class ReactiveLayout extends Component {
   constructor() {
@@ -11,7 +12,16 @@ class ReactiveLayout extends Component {
       isDetailOpen: false,
       detailIndex: 0,
       selectedId: "0",
+      screenOptions: computeOptions(),
     };
+  }
+
+  componentDidMount() {
+    window.addEventListener("resize", () => {
+      this.setState({
+        screenOptions: computeOptions(),
+      });
+    });
   }
 
   handleTabChange = (newId, prevId, e) => {
@@ -73,6 +83,9 @@ class ReactiveLayout extends Component {
       bgs,
       isNavVisible,
     } = this.props;
+    const addProps = {
+      screenOptions: this.state.screenOptions,
+    };
     return (
       <Fragment>
         <Navigation
@@ -82,6 +95,7 @@ class ReactiveLayout extends Component {
           selectedId={this.state.selectedId}
           handleTabChange={this.handleTabChange}
           styles={navBarStyles || {}}
+          screenOptions={this.state.screenOptions}
         />
         {navItems.map((navItem, index) => (
           <Screen
@@ -91,8 +105,9 @@ class ReactiveLayout extends Component {
             bg={bgs[index] || {}}
             scrollNext={this.scrollNext}
             scrollPrev={this.scrollPrev}
+            screenOptions={this.state.screenOptions}
           >
-            {React.createElement(components[index])}
+            {React.createElement(components[index], addProps, null)}
           </Screen>
         ))}
       </Fragment>

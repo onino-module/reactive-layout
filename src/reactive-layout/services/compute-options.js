@@ -19,9 +19,12 @@ const computeOptions = () => {
   }
 
   const opt = {
-    device: x < 1080 || isMobile ? "mobile" : "pc",
-    "screen-height": y,
-    "screen-width": x,
+    isMobile: isMobile,
+    isMobileSize: x <= 400,
+    isTabletSize: 400 < x < 1080,
+    isPcSize: x >= 1080,
+    height: y,
+    width: x,
   };
 
   return opt;

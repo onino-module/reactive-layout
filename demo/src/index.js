@@ -5,7 +5,10 @@ import bg1 from "./tech-bg1.jpg";
 import ReactiveLayout from "./../../src/reactive-layout/reactive-layout.component";
 
 const Comp1 = () => <div> Composant 1 </div>;
-const Comp2 = () => <div> Composant 2 </div>;
+const Comp2 = props => {
+  console.log(props);
+  return <div> Composant 2 </div>;
+};
 
 const components = [Comp1, Comp2];
 const navItems = ["Page 1", "Page 2"];
