@@ -9,6 +9,7 @@ import PropTypes from "prop-types";
 
 import Navigation from "./components/navigation.template";
 import Screen from "./components/screen.layout";
+import computeOptions from "./services/compute-options";
 
 var ReactiveLayout = function (_Component) {
   _inherits(ReactiveLayout, _Component);
@@ -72,40 +73,60 @@ var ReactiveLayout = function (_Component) {
     _this.state = {
       isDetailOpen: false,
       detailIndex: 0,
-      selectedId: "0"
+      selectedId: "0",
+      screenOptions: computeOptions()
     };
     return _this;
   }
 
-  ReactiveLayout.prototype.render = function render() {
+  ReactiveLayout.prototype.componentDidMount = function componentDidMount() {
     var _this2 = this;
+
+    window.addEventListener("resize", function () {
+      _this2.setState({
+        screenOptions: computeOptions()
+      });
+    });
+  };
+
+  ReactiveLayout.prototype.render = function render() {
+    var _this3 = this;
 
     var _props = this.props,
         navItems = _props.navItems,
         components = _props.components,
-        navBarStyles = _props.navBarStyles;
+        navBarStyles = _props.navBarStyles,
+        bgs = _props.bgs,
+        isNavVisible = _props.isNavVisible;
 
+    var addProps = {
+      screenOptions: this.state.screenOptions
+    };
     return React.createElement(
       Fragment,
       null,
       React.createElement(Navigation, {
         id: this.props.id,
+        isNavVisible: isNavVisible,
         navItems: navItems,
         selectedId: this.state.selectedId,
         handleTabChange: this.handleTabChange,
-        styles: navBarStyles || {}
+        styles: navBarStyles || {},
+        screenOptions: this.state.screenOptions
       }),
       navItems.map(function (navItem, index) {
         return React.createElement(
           Screen,
           {
-            key: _this2.props.id + index,
-            id: _this2.props.id,
+            key: _this3.props.id + index,
+            id: _this3.props.id,
             index: index,
-            scrollNext: _this2.scrollNext,
-            scrollPrev: _this2.scrollPrev
+            bg: bgs[index] || {},
+            scrollNext: _this3.scrollNext,
+            scrollPrev: _this3.scrollPrev,
+            screenOptions: _this3.state.screenOptions
           },
-          React.createElement(components[index])
+          React.createElement(components[index], addProps, null)
         );
       })
     );
@@ -114,11 +135,21 @@ var ReactiveLayout = function (_Component) {
   return ReactiveLayout;
 }(Component);
 
+ReactiveLayout.defaultProps = {
+  bgs: [],
+  isNavVisible: true
+};
+
 ReactiveLayout.propTypes = process.env.NODE_ENV !== "production" ? {
   id: PropTypes.string.isRequired,
+  isNavVisible: PropTypes.bool.isRequired,
   navItems: PropTypes.array.isRequired,
   components: PropTypes.array.isRequired,
-  navBarStyles: PropTypes.object
+  navBarStyles: PropTypes.object,
+  bgs: PropTypes.arrayOf(PropTypes.shape({
+    img: PropTypes.string,
+    color: PropTypes.string
+  }))
 } : {};
 
 export default ReactiveLayout;

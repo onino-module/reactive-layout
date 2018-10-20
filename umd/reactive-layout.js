@@ -11,7 +11,7 @@
 		exports["ReactiveLayout"] = factory(require("react"));
 	else
 		root["ReactiveLayout"] = factory(root["React"]);
-})(window, function(__WEBPACK_EXTERNAL_MODULE__0__) {
+})(window, function(__WEBPACK_EXTERNAL_MODULE__1__) {
 return /******/ (function(modules) { // webpackBootstrap
 /******/ 	// The module cache
 /******/ 	var installedModules = {};
@@ -100,12 +100,6 @@ return /******/ (function(modules) { // webpackBootstrap
 /************************************************************************/
 /******/ ([
 /* 0 */
-/***/ (function(module, exports) {
-
-module.exports = __WEBPACK_EXTERNAL_MODULE__0__;
-
-/***/ }),
-/* 1 */
 /***/ (function(module, exports, __webpack_require__) {
 
 /**
@@ -121,6 +115,12 @@ if (false) { var throwOnDirectAccess, isValidElement, REACT_ELEMENT_TYPE; } else
   module.exports = __webpack_require__(4)();
 }
 
+
+/***/ }),
+/* 1 */
+/***/ (function(module, exports) {
+
+module.exports = __WEBPACK_EXTERNAL_MODULE__1__;
 
 /***/ }),
 /* 2 */
@@ -228,11 +228,11 @@ module.exports = ReactPropTypesSecret;
 __webpack_require__.r(__webpack_exports__);
 
 // EXTERNAL MODULE: external {"root":"React","commonjs2":"react","commonjs":"react","amd":"react"}
-var external_root_React_commonjs2_react_commonjs_react_amd_react_ = __webpack_require__(0);
+var external_root_React_commonjs2_react_commonjs_react_amd_react_ = __webpack_require__(1);
 var external_root_React_commonjs2_react_commonjs_react_amd_react_default = /*#__PURE__*/__webpack_require__.n(external_root_React_commonjs2_react_commonjs_react_amd_react_);
 
 // EXTERNAL MODULE: ./node_modules/prop-types/index.js
-var prop_types = __webpack_require__(1);
+var prop_types = __webpack_require__(0);
 var prop_types_default = /*#__PURE__*/__webpack_require__.n(prop_types);
 
 // CONCATENATED MODULE: ./src/reactive-layout/components/navigation.template.js
@@ -250,7 +250,8 @@ function _inherits(subClass, superClass) { if (typeof superClass !== "function" 
 var fixedContainerStyle = {
   width: "100%",
   position: "fixed",
-  top: "0"
+  top: 0,
+  zIndex: 1000
 };
 
 var centeredContainerStyle = {
@@ -271,7 +272,9 @@ var navOptionStyle = {
   textDecoration: "none",
   fontSize: "1em",
   width: "100px",
-  textAlign: "center"
+  textAlign: "center",
+  backgroundColor: "transparent",
+  color: "#000000"
 };
 
 var selectStyle = {
@@ -327,11 +330,20 @@ var navigation_template_Navigation = function (_Component) {
     var _props = this.props,
         navItems = _props.navItems,
         theme = _props.theme,
-        styles = _props.styles;
+        styles = _props.styles,
+        isNavVisible = _props.isNavVisible,
+        screenOptions = _props.screenOptions;
 
-    var _fixedContainerStyle = _extends({}, fixedContainerStyle, styles.fixedContainer);
+    var _fixedContainerStyle = _extends({}, fixedContainerStyle, styles.fixedContainer, {
+      display: isNavVisible ? "flex" : "none"
+    });
     var _navButtonStyle = _extends({}, navButtonStyle, styles.navButton);
-    var _rightWrapperStyle = _extends({}, rightWrapperStyle, styles.rightWrapper);
+    var _rightWrapperStyle = _extends({}, rightWrapperStyle, styles.rightWrapper, {
+      display: screenOptions.isMobileSize ? "none" : "flex"
+    });
+    var _selectStyle = _extends({}, styles.selectStyle, selectStyle, {
+      display: screenOptions.isMobileSize ? "block" : "none"
+    });
     return external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
       "div",
       { style: _fixedContainerStyle },
@@ -360,7 +372,7 @@ var navigation_template_Navigation = function (_Component) {
         ),
         external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
           "select",
-          { style: selectStyle, onChange: this.scrollToMob },
+          { style: _selectStyle, onChange: this.scrollToMob },
           navItems.map(function (item, index) {
             return external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
               "option",
@@ -382,12 +394,10 @@ var navigation_template_Navigation = function (_Component) {
 }(external_root_React_commonjs2_react_commonjs_react_amd_react_["Component"]);
 
 navigation_template_Navigation.propTypes = {
-  navItems: prop_types_default.a.arrayOf(prop_types_default.a.shape({
-    link: prop_types_default.a.string.isRequired,
-    text: prop_types_default.a.string.isRequired
-  })).isRequired,
+  navItems: prop_types_default.a.arrayOf(prop_types_default.a.string.isRequired).isRequired,
   id: prop_types_default.a.string.isRequired,
-  styles: prop_types_default.a.object
+  styles: prop_types_default.a.object,
+  screenOptions: prop_types_default.a.object.isRequired
 };
 
 /* harmony default export */ var navigation_template = (navigation_template_Navigation);
@@ -414,7 +424,10 @@ var containerStyle = {
   alignItems: "center",
   height: "auto",
   paddingBottom: "20px",
-  width: "100%"
+  width: "100%",
+  backgoundColor: "transparent",
+  position: "absolute",
+  bottom: 0
 };
 
 var leftScrollButtonStyle = {
@@ -491,6 +504,8 @@ nav_buttons_component_NavButtons.propTypes = {
 
 /* harmony default export */ var nav_buttons_component = (nav_buttons_component_NavButtons);
 // CONCATENATED MODULE: ./src/reactive-layout/components/screen.layout.js
+var screen_layout_extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
 
 
 
@@ -503,7 +518,8 @@ var screen_layout_containerStyle = {
   justifyContent: "spaceBetween",
   alignItems: "center",
   backgroundSize: "cover",
-  overflow: "hidden"
+  overflow: "hidden",
+  position: "relative"
 };
 
 var childBoxStyle = {
@@ -511,7 +527,8 @@ var childBoxStyle = {
   display: "flex",
   justifyContent: "center",
   alignItems: "center",
-  width: "100vw"
+  width: "100%"
+  // height: "100%",
 };
 
 var screen_layout_Screen = function Screen(_ref) {
@@ -520,14 +537,22 @@ var screen_layout_Screen = function Screen(_ref) {
       children = _ref.children,
       scrollNext = _ref.scrollNext,
       scrollPrev = _ref.scrollPrev,
-      id = _ref.id;
+      id = _ref.id,
+      bg = _ref.bg,
+      screenOptions = _ref.screenOptions;
 
+  var newStyles = {
+    backgroundColor: bg.color || "transparent",
+    backgroundImage: "url(" + bg.img + ")" || "none",
+    backgroundRepeat: "no-repeat",
+    backgroundSize: "cover"
+  };
   return external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
     "div",
     { style: screen_layout_containerStyle, id: id },
     external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
       "div",
-      { style: childBoxStyle },
+      { style: screen_layout_extends({}, childBoxStyle, newStyles) },
       children || external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement("div", null)
     ),
     !noNav && external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(nav_buttons_component, {
@@ -543,16 +568,49 @@ screen_layout_Screen.propTypes = {
   index: prop_types_default.a.number.isRequired,
   noNav: prop_types_default.a.bool,
   children: prop_types_default.a.any,
-  id: prop_types_default.a.string.isRequired
+  id: prop_types_default.a.string.isRequired,
+  bg: prop_types_default.a.shape({
+    img: prop_types_default.a.string,
+    color: prop_types_default.a.string
+  }),
+  screenOptions: prop_types_default.a.object
 };
 
 /* harmony default export */ var screen_layout = (screen_layout_Screen);
+// CONCATENATED MODULE: ./src/reactive-layout/services/compute-options.js
+var computeOptions = function computeOptions() {
+  var w = window,
+      d = document,
+      e = d.documentElement,
+      g = d.getElementsByTagName("body")[0],
+      x = w.innerWidth || e.clientWidth || g.clientWidth,
+      y = w.innerHeight || e.clientHeight || g.clientHeight,
+      isMobile = false;
+  //eslint-disable-next-line
+  if (/(android|bb\d+|meego).+mobile|avantgo|bada\/|blackberry|blazer|compal|elaine|fennec|hiptop|iemobile|ip(hone|od)|ipad|iris|kindle|Android|Silk|lge |maemo|midp|mmp|netfront|opera m(ob|in)i|palm( os)?|phone|p(ixi|re)\/|plucker|pocket|psp|series(4|6)0|symbian|treo|up\.(browser|link)|vodafone|wap|windows (ce|phone)|xda|xiino/i.test(navigator.userAgent) || /1207|6310|6590|3gso|4thp|50[1-6]i|770s|802s|a wa|abac|ac(er|oo|s\-)|ai(ko|rn)|al(av|ca|co)|amoi|an(ex|ny|yw)|aptu|ar(ch|go)|as(te|us)|attw|au(di|\-m|r |s )|avan|be(ck|ll|nq)|bi(lb|rd)|bl(ac|az)|br(e|v)w|bumb|bw\-(n|u)|c55\/|capi|ccwa|cdm\-|cell|chtm|cldc|cmd\-|co(mp|nd)|craw|da(it|ll|ng)|dbte|dc\-s|devi|dica|dmob|do(c|p)o|ds(12|\-d)|el(49|ai)|em(l2|ul)|er(ic|k0)|esl8|ez([4-7]0|os|wa|ze)|fetc|fly(\-|_)|g1 u|g560|gene|gf\-5|g\-mo|go(\.w|od)|gr(ad|un)|haie|hcit|hd\-(m|p|t)|hei\-|hi(pt|ta)|hp( i|ip)|hs\-c|ht(c(\-| |_|a|g|p|s|t)|tp)|hu(aw|tc)|i\-(20|go|ma)|i230|iac( |\-|\/)|ibro|idea|ig01|ikom|im1k|inno|ipaq|iris|ja(t|v)a|jbro|jemu|jigs|kddi|keji|kgt( |\/)|klon|kpt |kwc\-|kyo(c|k)|le(no|xi)|lg( g|\/(k|l|u)|50|54|\-[a-w])|libw|lynx|m1\-w|m3ga|m50\/|ma(te|ui|xo)|mc(01|21|ca)|m\-cr|me(rc|ri)|mi(o8|oa|ts)|mmef|mo(01|02|bi|de|do|t(\-| |o|v)|zz)|mt(50|p1|v )|mwbp|mywa|n10[0-2]|n20[2-3]|n30(0|2)|n50(0|2|5)|n7(0(0|1)|10)|ne((c|m)\-|on|tf|wf|wg|wt)|nok(6|i)|nzph|o2im|op(ti|wv)|oran|owg1|p800|pan(a|d|t)|pdxg|pg(13|\-([1-8]|c))|phil|pire|pl(ay|uc)|pn\-2|po(ck|rt|se)|prox|psio|pt\-g|qa\-a|qc(07|12|21|32|60|\-[2-7]|i\-)|qtek|r380|r600|raks|rim9|ro(ve|zo)|s55\/|sa(ge|ma|mm|ms|ny|va)|sc(01|h\-|oo|p\-)|sdk\/|se(c(\-|0|1)|47|mc|nd|ri)|sgh\-|shar|sie(\-|m)|sk\-0|sl(45|id)|sm(al|ar|b3|it|t5)|so(ft|ny)|sp(01|h\-|v\-|v )|sy(01|mb)|t2(18|50)|t6(00|10|18)|ta(gt|lk)|tcl\-|tdg\-|tel(i|m)|tim\-|t\-mo|to(pl|sh)|ts(70|m\-|m3|m5)|tx\-9|up(\.b|g1|si)|utst|v400|v750|veri|vi(rg|te)|vk(40|5[0-3]|\-v)|vm40|voda|vulc|vx(52|53|60|61|70|80|81|83|85|98)|w3c(\-| )|webc|whit|wi(g |nc|nw)|wmlb|wonu|x700|yas\-|your|zeto|zte\-/i.test(navigator.userAgent.substr(0, 4))) {
+    isMobile = true;
+  }
+
+  var opt = {
+    isMobile: isMobile,
+    isMobileSize: x <= 400,
+    isTabletSize: 400 < x < 1080,
+    isPcSize: x >= 1080,
+    height: y,
+    width: x
+  };
+
+  return opt;
+};
+
+/* harmony default export */ var compute_options = (computeOptions);
 // CONCATENATED MODULE: ./src/reactive-layout/reactive-layout.component.js
 function reactive_layout_component_classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
 function reactive_layout_component_possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
 function reactive_layout_component_inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
 
 
 
@@ -622,40 +680,60 @@ var reactive_layout_component_ReactiveLayout = function (_Component) {
     _this.state = {
       isDetailOpen: false,
       detailIndex: 0,
-      selectedId: "0"
+      selectedId: "0",
+      screenOptions: compute_options()
     };
     return _this;
   }
 
-  ReactiveLayout.prototype.render = function render() {
+  ReactiveLayout.prototype.componentDidMount = function componentDidMount() {
     var _this2 = this;
+
+    window.addEventListener("resize", function () {
+      _this2.setState({
+        screenOptions: compute_options()
+      });
+    });
+  };
+
+  ReactiveLayout.prototype.render = function render() {
+    var _this3 = this;
 
     var _props = this.props,
         navItems = _props.navItems,
         components = _props.components,
-        navBarStyles = _props.navBarStyles;
+        navBarStyles = _props.navBarStyles,
+        bgs = _props.bgs,
+        isNavVisible = _props.isNavVisible;
 
+    var addProps = {
+      screenOptions: this.state.screenOptions
+    };
     return external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
       external_root_React_commonjs2_react_commonjs_react_amd_react_["Fragment"],
       null,
       external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(navigation_template, {
         id: this.props.id,
+        isNavVisible: isNavVisible,
         navItems: navItems,
         selectedId: this.state.selectedId,
         handleTabChange: this.handleTabChange,
-        styles: navBarStyles || {}
+        styles: navBarStyles || {},
+        screenOptions: this.state.screenOptions
       }),
       navItems.map(function (navItem, index) {
         return external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
           screen_layout,
           {
-            key: _this2.props.id + index,
-            id: _this2.props.id,
+            key: _this3.props.id + index,
+            id: _this3.props.id,
             index: index,
-            scrollNext: _this2.scrollNext,
-            scrollPrev: _this2.scrollPrev
+            bg: bgs[index] || {},
+            scrollNext: _this3.scrollNext,
+            scrollPrev: _this3.scrollPrev,
+            screenOptions: _this3.state.screenOptions
           },
-          external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(components[index])
+          external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(components[index], addProps, null)
         );
       })
     );
@@ -664,11 +742,21 @@ var reactive_layout_component_ReactiveLayout = function (_Component) {
   return ReactiveLayout;
 }(external_root_React_commonjs2_react_commonjs_react_amd_react_["Component"]);
 
+reactive_layout_component_ReactiveLayout.defaultProps = {
+  bgs: [],
+  isNavVisible: true
+};
+
 reactive_layout_component_ReactiveLayout.propTypes = {
   id: prop_types_default.a.string.isRequired,
+  isNavVisible: prop_types_default.a.bool.isRequired,
   navItems: prop_types_default.a.array.isRequired,
   components: prop_types_default.a.array.isRequired,
-  navBarStyles: prop_types_default.a.object
+  navBarStyles: prop_types_default.a.object,
+  bgs: prop_types_default.a.arrayOf(prop_types_default.a.shape({
+    img: prop_types_default.a.string,
+    color: prop_types_default.a.string
+  }))
 };
 
 /* harmony default export */ var reactive_layout_component = (reactive_layout_component_ReactiveLayout);

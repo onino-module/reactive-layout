@@ -1,3 +1,5 @@
+var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
 import React from "react";
 import PropTypes from "prop-types";
 import NavButtons from "./scroll-top/nav-buttons.component";
@@ -10,7 +12,8 @@ var containerStyle = {
   justifyContent: "spaceBetween",
   alignItems: "center",
   backgroundSize: "cover",
-  overflow: "hidden"
+  overflow: "hidden",
+  position: "relative"
 };
 
 var childBoxStyle = {
@@ -18,7 +21,8 @@ var childBoxStyle = {
   display: "flex",
   justifyContent: "center",
   alignItems: "center",
-  width: "100vw"
+  width: "100%"
+  // height: "100%",
 };
 
 var Screen = function Screen(_ref) {
@@ -27,14 +31,22 @@ var Screen = function Screen(_ref) {
       children = _ref.children,
       scrollNext = _ref.scrollNext,
       scrollPrev = _ref.scrollPrev,
-      id = _ref.id;
+      id = _ref.id,
+      bg = _ref.bg,
+      screenOptions = _ref.screenOptions;
 
+  var newStyles = {
+    backgroundColor: bg.color || "transparent",
+    backgroundImage: "url(" + bg.img + ")" || "none",
+    backgroundRepeat: "no-repeat",
+    backgroundSize: "cover"
+  };
   return React.createElement(
     "div",
     { style: containerStyle, id: id },
     React.createElement(
       "div",
-      { style: childBoxStyle },
+      { style: _extends({}, childBoxStyle, newStyles) },
       children || React.createElement("div", null)
     ),
     !noNav && React.createElement(NavButtons, {
@@ -50,7 +62,12 @@ Screen.propTypes = process.env.NODE_ENV !== "production" ? {
   index: PropTypes.number.isRequired,
   noNav: PropTypes.bool,
   children: PropTypes.any,
-  id: PropTypes.string.isRequired
+  id: PropTypes.string.isRequired,
+  bg: PropTypes.shape({
+    img: PropTypes.string,
+    color: PropTypes.string
+  }),
+  screenOptions: PropTypes.object
 } : {};
 
 export default Screen;

@@ -12,7 +12,8 @@ import PropTypes from "prop-types";
 var fixedContainerStyle = {
   width: "100%",
   position: "fixed",
-  top: "0"
+  top: 0,
+  zIndex: 1000
 };
 
 var centeredContainerStyle = {
@@ -33,7 +34,9 @@ var navOptionStyle = {
   textDecoration: "none",
   fontSize: "1em",
   width: "100px",
-  textAlign: "center"
+  textAlign: "center",
+  backgroundColor: "transparent",
+  color: "#000000"
 };
 
 var selectStyle = {
@@ -89,11 +92,20 @@ var Navigation = function (_Component) {
     var _props = this.props,
         navItems = _props.navItems,
         theme = _props.theme,
-        styles = _props.styles;
+        styles = _props.styles,
+        isNavVisible = _props.isNavVisible,
+        screenOptions = _props.screenOptions;
 
-    var _fixedContainerStyle = _extends({}, fixedContainerStyle, styles.fixedContainer);
+    var _fixedContainerStyle = _extends({}, fixedContainerStyle, styles.fixedContainer, {
+      display: isNavVisible ? "flex" : "none"
+    });
     var _navButtonStyle = _extends({}, navButtonStyle, styles.navButton);
-    var _rightWrapperStyle = _extends({}, rightWrapperStyle, styles.rightWrapper);
+    var _rightWrapperStyle = _extends({}, rightWrapperStyle, styles.rightWrapper, {
+      display: screenOptions.isMobileSize ? "none" : "flex"
+    });
+    var _selectStyle = _extends({}, styles.selectStyle, selectStyle, {
+      display: screenOptions.isMobileSize ? "block" : "none"
+    });
     return React.createElement(
       "div",
       { style: _fixedContainerStyle },
@@ -122,7 +134,7 @@ var Navigation = function (_Component) {
         ),
         React.createElement(
           "select",
-          { style: selectStyle, onChange: this.scrollToMob },
+          { style: _selectStyle, onChange: this.scrollToMob },
           navItems.map(function (item, index) {
             return React.createElement(
               "option",
@@ -144,12 +156,10 @@ var Navigation = function (_Component) {
 }(Component);
 
 Navigation.propTypes = process.env.NODE_ENV !== "production" ? {
-  navItems: PropTypes.arrayOf(PropTypes.shape({
-    link: PropTypes.string.isRequired,
-    text: PropTypes.string.isRequired
-  })).isRequired,
+  navItems: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
   id: PropTypes.string.isRequired,
-  styles: PropTypes.object
+  styles: PropTypes.object,
+  screenOptions: PropTypes.object.isRequired
 } : {};
 
 export default Navigation;
