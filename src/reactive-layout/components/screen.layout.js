@@ -25,7 +25,7 @@ const childBoxStyle = {
 
 const Screen = ({
   index,
-  noNav,
+  hideBottomNav,
   children,
   scrollNext,
   scrollPrev,
@@ -44,7 +44,7 @@ const Screen = ({
       <div style={{ ...childBoxStyle, ...newStyles }}>
         {children || <div />}
       </div>
-      {!noNav && (
+      {!hideBottomNav && (
         <NavButtons
           index={index}
           scrollNext={scrollNext}
@@ -58,7 +58,7 @@ const Screen = ({
 
 Screen.propTypes = {
   index: PropTypes.number.isRequired,
-  noNav: PropTypes.bool,
+  hideBottomNav: PropTypes.bool,
   children: PropTypes.any,
   id: PropTypes.string.isRequired,
   bg: PropTypes.shape({

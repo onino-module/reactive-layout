@@ -4,7 +4,12 @@ import "./app.css";
 import bg1 from "./tech-bg1.jpg";
 import ReactiveLayout from "./../../src/reactive-layout/reactive-layout.component";
 
-const Comp1 = () => <div> Composant 1 </div>;
+const Comp1 = props => (
+  <div>
+    {" "}
+    Composant 1<button onClick={props.scrollNext}>test</button>
+  </div>
+);
 const Comp2 = props => {
   // console.log(props);
   return <div> Composant 2 </div>;
@@ -51,6 +56,7 @@ ReactDOM.render(
     navItems={navItems}
     components={components}
     bgs={bgs}
+    hideBottomNav={true}
   />,
   document.querySelector("#demo"),
 );

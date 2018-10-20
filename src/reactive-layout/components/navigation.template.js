@@ -109,14 +109,17 @@ class Navigation extends Component {
               );
             })}
           </div>
-          <select style={_selectStyle} onChange={this.scrollToMob}>
+          <select
+            style={_selectStyle}
+            onChange={e => this.scroll(Number(e.currentTarget.value))}
+          >
             {navItems.map((item, index) => {
               return (
                 <option
                   style={navOptionStyle}
                   key={"menuItem" + index}
                   data-link={item}
-                  value={item}
+                  value={index}
                 >
                   {item}
                 </option>
