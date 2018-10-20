@@ -6,7 +6,7 @@ import ReactiveLayout from "./../../src/reactive-layout/reactive-layout.componen
 
 const Comp1 = () => <div> Composant 1 </div>;
 const Comp2 = props => {
-  console.log(props);
+  // console.log(props);
   return <div> Composant 2 </div>;
 };
 

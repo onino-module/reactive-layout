@@ -27,6 +27,8 @@ const navOptionStyle = {
   fontSize: "1em",
   width: "100px",
   textAlign: "center",
+  backgroundColor: "transparent",
+  color: "#000000",
 };
 
 const selectStyle = {
@@ -71,14 +73,23 @@ class Navigation extends Component {
   };
 
   render() {
-    const { navItems, theme, styles, isNavVisible } = this.props;
+    const { navItems, theme, styles, isNavVisible, screenOptions } = this.props;
     const _fixedContainerStyle = {
       ...fixedContainerStyle,
       ...styles.fixedContainer,
       display: isNavVisible ? "flex" : "none",
     };
     const _navButtonStyle = { ...navButtonStyle, ...styles.navButton };
-    const _rightWrapperStyle = { ...rightWrapperStyle, ...styles.rightWrapper };
+    const _rightWrapperStyle = {
+      ...rightWrapperStyle,
+      ...styles.rightWrapper,
+      display: screenOptions.isMobileSize ? "none" : "flex",
+    };
+    const _selectStyle = {
+      ...styles.selectStyle,
+      ...selectStyle,
+      display: screenOptions.isMobileSize ? "block" : "none",
+    };
     return (
       <div style={_fixedContainerStyle}>
         <div style={centeredContainerStyle}>
@@ -98,7 +109,7 @@ class Navigation extends Component {
               );
             })}
           </div>
-          <select style={selectStyle} onChange={this.scrollToMob}>
+          <select style={_selectStyle} onChange={this.scrollToMob}>
             {navItems.map((item, index) => {
               return (
                 <option
@@ -122,6 +133,7 @@ Navigation.propTypes = {
   navItems: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
   id: PropTypes.string.isRequired,
   styles: PropTypes.object,
+  screenOptions: PropTypes.object.isRequired,
 };
 
 export default Navigation;
