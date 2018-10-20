@@ -43,6 +43,7 @@ document.body.style.overflow = "hidden";
 ReactDOM.render(
   <ReactiveLayout
     navBarStyles={navBarStyles}
+    isNavVisible={true}
     id="demo"
     navItems={navItems}
     components={components}

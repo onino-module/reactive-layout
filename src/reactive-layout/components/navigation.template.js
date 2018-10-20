@@ -71,10 +71,11 @@ class Navigation extends Component {
   };
 
   render() {
-    const { navItems, theme, styles } = this.props;
+    const { navItems, theme, styles, isNavVisible } = this.props;
     const _fixedContainerStyle = {
       ...fixedContainerStyle,
       ...styles.fixedContainer,
+      display: isNavVisible ? "flex" : "none",
     };
     const _navButtonStyle = { ...navButtonStyle, ...styles.navButton };
     const _rightWrapperStyle = { ...rightWrapperStyle, ...styles.rightWrapper };

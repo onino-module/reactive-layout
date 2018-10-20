@@ -66,11 +66,18 @@ class ReactiveLayout extends Component {
   };
 
   render() {
-    const { navItems, components, navBarStyles, bgs } = this.props;
+    const {
+      navItems,
+      components,
+      navBarStyles,
+      bgs,
+      isNavVisible,
+    } = this.props;
     return (
       <Fragment>
         <Navigation
           id={this.props.id}
+          isNavVisible={isNavVisible}
           navItems={navItems}
           selectedId={this.state.selectedId}
           handleTabChange={this.handleTabChange}
@@ -95,10 +102,12 @@ class ReactiveLayout extends Component {
 
 ReactiveLayout.defaultProps = {
   bgs: [],
+  isNavVisible: true,
 };
 
 ReactiveLayout.propTypes = {
   id: PropTypes.string.isRequired,
+  isNavVisible: PropTypes.bool.isRequired,
   navItems: PropTypes.array.isRequired,
   components: PropTypes.array.isRequired,
   navBarStyles: PropTypes.object,
