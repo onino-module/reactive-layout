@@ -23,6 +23,16 @@ const navBarStyles = {
   },
 };
 
+const bgs = [
+  {
+    color: "blue",
+  },
+  {
+    color: "red",
+    img: bg1,
+  },
+];
+
 document.querySelector("#demo").style.width = "100%";
 document.querySelector("#demo").style.height = "100%";
 document.querySelector("#demo").style.overflow = "hidden";
@@ -36,6 +46,7 @@ ReactDOM.render(
     id="demo"
     navItems={navItems}
     components={components}
+    bgs={bgs}
   />,
   document.querySelector("#demo"),
 );

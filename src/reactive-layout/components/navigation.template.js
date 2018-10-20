@@ -4,7 +4,8 @@ import PropTypes from "prop-types";
 const fixedContainerStyle = {
   width: "100%",
   position: "fixed",
-  top: "0",
+  top: 0,
+  zIndex: 1000,
 };
 
 const centeredContainerStyle = {
@@ -117,12 +118,7 @@ class Navigation extends Component {
 }
 
 Navigation.propTypes = {
-  navItems: PropTypes.arrayOf(
-    PropTypes.shape({
-      link: PropTypes.string.isRequired,
-      text: PropTypes.string.isRequired,
-    }),
-  ).isRequired,
+  navItems: PropTypes.arrayOf(PropTypes.string.isRequired).isRequired,
   id: PropTypes.string.isRequired,
   styles: PropTypes.object,
 };

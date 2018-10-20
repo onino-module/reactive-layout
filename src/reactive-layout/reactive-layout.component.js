@@ -66,7 +66,7 @@ class ReactiveLayout extends Component {
   };
 
   render() {
-    const { navItems, components, navBarStyles } = this.props;
+    const { navItems, components, navBarStyles, bgs } = this.props;
     return (
       <Fragment>
         <Navigation
@@ -81,6 +81,7 @@ class ReactiveLayout extends Component {
             key={this.props.id + index}
             id={this.props.id}
             index={index}
+            bg={bgs[index] || {}}
             scrollNext={this.scrollNext}
             scrollPrev={this.scrollPrev}
           >
@@ -92,11 +93,21 @@ class ReactiveLayout extends Component {
   }
 }
 
+ReactiveLayout.defaultProps = {
+  bgs: [],
+};
+
 ReactiveLayout.propTypes = {
   id: PropTypes.string.isRequired,
   navItems: PropTypes.array.isRequired,
   components: PropTypes.array.isRequired,
   navBarStyles: PropTypes.object,
+  bgs: PropTypes.arrayOf(
+    PropTypes.shape({
+      img: PropTypes.string,
+      color: PropTypes.string,
+    }),
+  ),
 };
 
 export default ReactiveLayout;
