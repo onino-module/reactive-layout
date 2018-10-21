@@ -98,13 +98,15 @@ var ReactiveLayout = function (_Component) {
         navBarStyles = _props.navBarStyles,
         bgs = _props.bgs,
         isNavVisible = _props.isNavVisible,
-        hideBottomNav = _props.hideBottomNav;
+        hideBottomNav = _props.hideBottomNav,
+        navButtonOptions = _props.navButtonOptions;
 
     var addProps = {
       screenOptions: this.state.screenOptions,
       scrollPrev: this.scrollPrev,
       scrollNext: this.scrollNext
     };
+
     return React.createElement(
       Fragment,
       null,
@@ -128,7 +130,8 @@ var ReactiveLayout = function (_Component) {
             scrollNext: _this3.scrollNext,
             scrollPrev: _this3.scrollPrev,
             screenOptions: _this3.state.screenOptions,
-            hideBottomNav: hideBottomNav
+            hideBottomNav: hideBottomNav,
+            navButtonOptions: navButtonOptions
           },
           React.createElement(components[index], addProps, null)
         );
@@ -152,6 +155,10 @@ ReactiveLayout.propTypes = process.env.NODE_ENV !== "production" ? {
   navItems: PropTypes.array.isRequired,
   components: PropTypes.array.isRequired,
   navBarStyles: PropTypes.object,
+  navButtonOptions: PropTypes.shape({
+    size: PropTypes.number,
+    color: PropTypes.string
+  }),
   bgs: PropTypes.arrayOf(PropTypes.shape({
     img: PropTypes.string,
     color: PropTypes.string

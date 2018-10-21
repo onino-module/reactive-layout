@@ -1,22 +1,4 @@
-"use strict";
-
-exports.__esModule = true;
-
 var _extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
-
-var _react = require("react");
-
-var _react2 = _interopRequireDefault(_react);
-
-var _propTypes = require("prop-types");
-
-var _propTypes2 = _interopRequireDefault(_propTypes);
-
-var _up = require("./up.png");
-
-var _up2 = _interopRequireDefault(_up);
-
-function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
@@ -24,22 +6,24 @@ function _possibleConstructorReturn(self, call) { if (!self) { throw new Referen
 
 function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
+import React, { Component } from "react";
+import PropTypes from "prop-types";
+import ArrowButtonSvg from "./arrow-button.svg";
+
 var containerStyle = {
   display: "flex",
   justifyContent: "center",
   alignItems: "center",
   height: "auto",
-  paddingBottom: "20px",
   width: "100%",
   backgoundColor: "transparent",
   position: "absolute",
-  bottom: 0
+  bottom: 50
 };
 
 var leftScrollButtonStyle = {
-  background: "url(" + _up2.default + ")",
-  width: "48px",
-  height: "48px",
+  width: "auto",
+  height: "auto",
   cursor: "pointer",
   margin: "0px 5px 0px 5px"
 };
@@ -90,23 +74,45 @@ var NavButtons = function (_Component) {
   };
 
   NavButtons.prototype.render = function render() {
+    var _props$navButtonOptio = this.props.navButtonOptions,
+        size = _props$navButtonOptio.size,
+        color = _props$navButtonOptio.color;
+
     var isFirst = this.props.index === 0;
     var isLast = this.props.index === this.state.totalLength;
-    return _react2.default.createElement(
+    return React.createElement(
       "div",
       { style: containerStyle },
-      !isFirst && _react2.default.createElement("div", { style: leftScrollButtonStyle, onClick: this.props.scrollPrev }),
-      !isLast && _react2.default.createElement("div", { style: rightScrollButtonStyle, onClick: this.props.scrollNext })
+      !isFirst && React.createElement(
+        "div",
+        { style: leftScrollButtonStyle, onClick: this.props.scrollPrev },
+        React.createElement(ArrowButtonSvg, { size: size, color: color })
+      ),
+      !isLast && React.createElement(
+        "div",
+        { style: rightScrollButtonStyle, onClick: this.props.scrollNext },
+        React.createElement(ArrowButtonSvg, { size: size, color: color })
+      )
     );
   };
 
   return NavButtons;
-}(_react.Component);
+}(Component);
+
+NavButtons.defaultProps = {
+  navButtonOptions: {
+    size: 50,
+    color: "#999999"
+  }
+};
 
 NavButtons.propTypes = process.env.NODE_ENV !== "production" ? {
-  index: _propTypes2.default.number.isRequired,
-  id: _propTypes2.default.string.isRequired
+  index: PropTypes.number.isRequired,
+  id: PropTypes.string.isRequired,
+  navButtonOptions: PropTypes.shape({
+    size: PropTypes.number,
+    color: PropTypes.string
+  }).isRequired
 } : {};
 
-exports.default = NavButtons;
-module.exports = exports["default"];
+export default NavButtons;

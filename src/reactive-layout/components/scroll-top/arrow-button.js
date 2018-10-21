@@ -1,23 +1,21 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
-import up from "./up.png";
+import ArrowButtonSvg from "./arrow-button.svg";
 
 const containerStyle = {
   display: "flex",
   justifyContent: "center",
   alignItems: "center",
   height: "auto",
-  paddingBottom: "20px",
   width: "100%",
   backgoundColor: "transparent",
   position: "absolute",
-  bottom: 0,
+  bottom: 50,
 };
 
 const leftScrollButtonStyle = {
-  background: `url(${up})`,
-  width: "48px",
-  height: "48px",
+  width: "auto",
+  height: "auto",
   cursor: "pointer",
   margin: "0px 5px 0px 5px",
 };
@@ -70,24 +68,40 @@ class NavButtons extends Component {
   };
 
   render() {
+    const { size, color } = this.props.navButtonOptions;
     const isFirst = this.props.index === 0;
     const isLast = this.props.index === this.state.totalLength;
     return (
       <div style={containerStyle}>
         {!isFirst && (
-          <div style={leftScrollButtonStyle} onClick={this.props.scrollPrev} />
+          <div style={leftScrollButtonStyle} onClick={this.props.scrollPrev}>
+            <ArrowButtonSvg size={size} color={color} />
+          </div>
         )}
         {!isLast && (
-          <div style={rightScrollButtonStyle} onClick={this.props.scrollNext} />
+          <div style={rightScrollButtonStyle} onClick={this.props.scrollNext}>
+            <ArrowButtonSvg size={size} color={color} />
+          </div>
         )}
       </div>
     );
   }
 }
 
+NavButtons.defaultProps = {
+  navButtonOptions: {
+    size: 50,
+    color: "#999999",
+  },
+};
+
 NavButtons.propTypes = {
   index: PropTypes.number.isRequired,
   id: PropTypes.string.isRequired,
+  navButtonOptions: PropTypes.shape({
+    size: PropTypes.number,
+    color: PropTypes.string,
+  }).isRequired,
 };
 
 export default NavButtons;

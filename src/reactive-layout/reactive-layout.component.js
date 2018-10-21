@@ -83,12 +83,14 @@ class ReactiveLayout extends Component {
       bgs,
       isNavVisible,
       hideBottomNav,
+      navButtonOptions,
     } = this.props;
     const addProps = {
       screenOptions: this.state.screenOptions,
       scrollPrev: this.scrollPrev,
       scrollNext: this.scrollNext,
     };
+
     return (
       <Fragment>
         <Navigation
@@ -110,6 +112,7 @@ class ReactiveLayout extends Component {
             scrollPrev={this.scrollPrev}
             screenOptions={this.state.screenOptions}
             hideBottomNav={hideBottomNav}
+            navButtonOptions={navButtonOptions}
           >
             {React.createElement(components[index], addProps, null)}
           </Screen>
@@ -132,6 +135,10 @@ ReactiveLayout.propTypes = {
   navItems: PropTypes.array.isRequired,
   components: PropTypes.array.isRequired,
   navBarStyles: PropTypes.object,
+  navButtonOptions: PropTypes.shape({
+    size: PropTypes.number,
+    color: PropTypes.string,
+  }),
   bgs: PropTypes.arrayOf(
     PropTypes.shape({
       img: PropTypes.string,

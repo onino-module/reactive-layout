@@ -6,12 +6,10 @@ import ReactiveLayout from "./../../src/reactive-layout/reactive-layout.componen
 
 const Comp1 = props => (
   <div>
-    {" "}
     Composant 1<button onClick={props.scrollNext}>test</button>
   </div>
 );
 const Comp2 = props => {
-  // console.log(props);
   return <div> Composant 2 </div>;
 };
 
@@ -19,9 +17,7 @@ const components = [Comp1, Comp2];
 const navItems = ["Page 1", "Page 2"];
 
 const navBarStyles = {
-  fixedContainer: {
-    // fontFamily: "Play",
-  },
+  fixedContainer: {},
   centeredContainer: {},
   navButton: {
     fontFamily: "Play",
@@ -41,6 +37,11 @@ const bgs = [
   },
 ];
 
+const navButtonOptions = {
+  color: "#999",
+  size: 60,
+};
+
 document.querySelector("#demo").style.width = "100%";
 document.querySelector("#demo").style.height = "100%";
 document.querySelector("#demo").style.overflow = "hidden";
@@ -56,7 +57,8 @@ ReactDOM.render(
     navItems={navItems}
     components={components}
     bgs={bgs}
-    hideBottomNav={true}
+    hideBottomNav={false}
+    navButtonOptions={navButtonOptions}
   />,
   document.querySelector("#demo"),
 );

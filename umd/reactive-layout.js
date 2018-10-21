@@ -95,7 +95,7 @@ return /******/ (function(modules) { // webpackBootstrap
 /******/
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 3);
+/******/ 	return __webpack_require__(__webpack_require__.s = 2);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -112,7 +112,7 @@ return /******/ (function(modules) { // webpackBootstrap
 if (false) { var throwOnDirectAccess, isValidElement, REACT_ELEMENT_TYPE; } else {
   // By explicitly using `prop-types` you are opting into new production behavior.
   // http://fb.me/prop-types-in-prod
-  module.exports = __webpack_require__(4)();
+  module.exports = __webpack_require__(3)();
 }
 
 
@@ -126,17 +126,11 @@ module.exports = __WEBPACK_EXTERNAL_MODULE__1__;
 /* 2 */
 /***/ (function(module, exports, __webpack_require__) {
 
-module.exports = __webpack_require__.p + "up.318c6a34.png";
+module.exports = __webpack_require__(5);
+
 
 /***/ }),
 /* 3 */
-/***/ (function(module, exports, __webpack_require__) {
-
-module.exports = __webpack_require__(6);
-
-
-/***/ }),
-/* 4 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -149,7 +143,7 @@ module.exports = __webpack_require__(6);
 
 
 
-var ReactPropTypesSecret = __webpack_require__(5);
+var ReactPropTypesSecret = __webpack_require__(4);
 
 function emptyFunction() {}
 
@@ -202,7 +196,7 @@ module.exports = function() {
 
 
 /***/ }),
-/* 5 */
+/* 4 */
 /***/ (function(module, exports, __webpack_require__) {
 
 "use strict";
@@ -221,7 +215,7 @@ module.exports = ReactPropTypesSecret;
 
 
 /***/ }),
-/* 6 */
+/* 5 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -406,18 +400,77 @@ navigation_template_Navigation.propTypes = {
 };
 
 /* harmony default export */ var navigation_template = (navigation_template_Navigation);
-// EXTERNAL MODULE: ./src/reactive-layout/components/scroll-top/up.png
-var up = __webpack_require__(2);
-var up_default = /*#__PURE__*/__webpack_require__.n(up);
+// CONCATENATED MODULE: ./src/reactive-layout/components/scroll-top/arrow-button.svg.js
+function arrow_button_svg_classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-// CONCATENATED MODULE: ./src/reactive-layout/components/scroll-top/nav-buttons.component.js
-var nav_buttons_component_extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+function arrow_button_svg_possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
-function nav_buttons_component_classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+function arrow_button_svg_inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
-function nav_buttons_component_possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
 
-function nav_buttons_component_inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+
+var arrow_button_svg_ArrowButtonSvg = function (_Component) {
+  arrow_button_svg_inherits(ArrowButtonSvg, _Component);
+
+  function ArrowButtonSvg() {
+    arrow_button_svg_classCallCheck(this, ArrowButtonSvg);
+
+    return arrow_button_svg_possibleConstructorReturn(this, _Component.apply(this, arguments));
+  }
+
+  ArrowButtonSvg.prototype.render = function render() {
+    return external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
+      "svg",
+      {
+        id: "svg2",
+        width: this.props.size,
+        version: "1.1",
+        viewBox: "0 0 500 500"
+      },
+      external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement("circle", {
+        id: "path4138",
+        strokeLinejoin: "round",
+        opacity: ".7",
+        strokeWidth: "40",
+        strokeLinecap: "round",
+        stroke: this.props.color,
+        cy: "250",
+        cx: "250",
+        r: "211",
+        fill: "none"
+      }),
+      external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement("path", {
+        id: "path4148",
+        fill: this.props.color,
+        d: "m110 280l140-100 140 100h-280"
+      })
+    );
+  };
+
+  return ArrowButtonSvg;
+}(external_root_React_commonjs2_react_commonjs_react_amd_react_["Component"]);
+
+arrow_button_svg_ArrowButtonSvg.defaultProps = {
+  color: "#666666",
+  size: 50
+};
+
+arrow_button_svg_ArrowButtonSvg.propTypes = {
+  id: prop_types_default.a.string,
+  color: prop_types_default.a.string.isRequired,
+  size: prop_types_default.a.number.isRequired
+};
+
+/* harmony default export */ var arrow_button_svg = (arrow_button_svg_ArrowButtonSvg);
+// CONCATENATED MODULE: ./src/reactive-layout/components/scroll-top/arrow-button.js
+var arrow_button_extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
+
+function arrow_button_classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+function arrow_button_possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+function arrow_button_inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
 
 
 
@@ -428,38 +481,36 @@ var containerStyle = {
   justifyContent: "center",
   alignItems: "center",
   height: "auto",
-  paddingBottom: "20px",
   width: "100%",
   backgoundColor: "transparent",
   position: "absolute",
-  bottom: 0
+  bottom: 50
 };
 
 var leftScrollButtonStyle = {
-  background: "url(" + up_default.a + ")",
-  width: "48px",
-  height: "48px",
+  width: "auto",
+  height: "auto",
   cursor: "pointer",
   margin: "0px 5px 0px 5px"
 };
 
-var rightScrollButtonStyle = nav_buttons_component_extends({}, leftScrollButtonStyle, {
+var rightScrollButtonStyle = arrow_button_extends({}, leftScrollButtonStyle, {
   transform: "rotate(180deg)"
 });
 
-var nav_buttons_component_NavButtons = function (_Component) {
-  nav_buttons_component_inherits(NavButtons, _Component);
+var arrow_button_NavButtons = function (_Component) {
+  arrow_button_inherits(NavButtons, _Component);
 
   function NavButtons() {
     var _temp, _this, _ret;
 
-    nav_buttons_component_classCallCheck(this, NavButtons);
+    arrow_button_classCallCheck(this, NavButtons);
 
     for (var _len = arguments.length, args = Array(_len), _key = 0; _key < _len; _key++) {
       args[_key] = arguments[_key];
     }
 
-    return _ret = (_temp = (_this = nav_buttons_component_possibleConstructorReturn(this, _Component.call.apply(_Component, [this].concat(args))), _this), _this.state = {
+    return _ret = (_temp = (_this = arrow_button_possibleConstructorReturn(this, _Component.call.apply(_Component, [this].concat(args))), _this), _this.state = {
       totalLength: 0
     }, _this.NavButtons = function (e) {
       e.preventDefault();
@@ -480,7 +531,7 @@ var nav_buttons_component_NavButtons = function (_Component) {
         left: 0,
         top: el.offsetTop
       });
-    }, _temp), nav_buttons_component_possibleConstructorReturn(_this, _ret);
+    }, _temp), arrow_button_possibleConstructorReturn(_this, _ret);
   }
 
   NavButtons.prototype.componentDidMount = function componentDidMount() {
@@ -489,25 +540,48 @@ var nav_buttons_component_NavButtons = function (_Component) {
   };
 
   NavButtons.prototype.render = function render() {
+    var _props$navButtonOptio = this.props.navButtonOptions,
+        size = _props$navButtonOptio.size,
+        color = _props$navButtonOptio.color;
+
     var isFirst = this.props.index === 0;
     var isLast = this.props.index === this.state.totalLength;
     return external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
       "div",
       { style: containerStyle },
-      !isFirst && external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement("div", { style: leftScrollButtonStyle, onClick: this.props.scrollPrev }),
-      !isLast && external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement("div", { style: rightScrollButtonStyle, onClick: this.props.scrollNext })
+      !isFirst && external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
+        "div",
+        { style: leftScrollButtonStyle, onClick: this.props.scrollPrev },
+        external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(arrow_button_svg, { size: size, color: color })
+      ),
+      !isLast && external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
+        "div",
+        { style: rightScrollButtonStyle, onClick: this.props.scrollNext },
+        external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(arrow_button_svg, { size: size, color: color })
+      )
     );
   };
 
   return NavButtons;
 }(external_root_React_commonjs2_react_commonjs_react_amd_react_["Component"]);
 
-nav_buttons_component_NavButtons.propTypes = {
-  index: prop_types_default.a.number.isRequired,
-  id: prop_types_default.a.string.isRequired
+arrow_button_NavButtons.defaultProps = {
+  navButtonOptions: {
+    size: 50,
+    color: "#999999"
+  }
 };
 
-/* harmony default export */ var nav_buttons_component = (nav_buttons_component_NavButtons);
+arrow_button_NavButtons.propTypes = {
+  index: prop_types_default.a.number.isRequired,
+  id: prop_types_default.a.string.isRequired,
+  navButtonOptions: prop_types_default.a.shape({
+    size: prop_types_default.a.number,
+    color: prop_types_default.a.string
+  }).isRequired
+};
+
+/* harmony default export */ var arrow_button = (arrow_button_NavButtons);
 // CONCATENATED MODULE: ./src/reactive-layout/components/screen.layout.js
 var screen_layout_extends = Object.assign || function (target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i]; for (var key in source) { if (Object.prototype.hasOwnProperty.call(source, key)) { target[key] = source[key]; } } } return target; };
 
@@ -544,7 +618,7 @@ var screen_layout_Screen = function Screen(_ref) {
       scrollPrev = _ref.scrollPrev,
       id = _ref.id,
       bg = _ref.bg,
-      screenOptions = _ref.screenOptions;
+      navButtonOptions = _ref.navButtonOptions;
 
   var newStyles = {
     backgroundColor: bg.color || "transparent",
@@ -560,7 +634,8 @@ var screen_layout_Screen = function Screen(_ref) {
       { style: screen_layout_extends({}, childBoxStyle, newStyles) },
       children || external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement("div", null)
     ),
-    !hideBottomNav && external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(nav_buttons_component, {
+    !hideBottomNav && external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(arrow_button, {
+      navButtonOptions: navButtonOptions,
       index: index,
       scrollNext: scrollNext,
       scrollPrev: scrollPrev,
@@ -578,7 +653,11 @@ screen_layout_Screen.propTypes = {
     img: prop_types_default.a.string,
     color: prop_types_default.a.string
   }),
-  screenOptions: prop_types_default.a.object
+  screenOptions: prop_types_default.a.object,
+  navButtonOptions: prop_types_default.a.shape({
+    size: prop_types_default.a.number,
+    color: prop_types_default.a.string
+  })
 };
 
 /* harmony default export */ var screen_layout = (screen_layout_Screen);
@@ -710,13 +789,15 @@ var reactive_layout_component_ReactiveLayout = function (_Component) {
         navBarStyles = _props.navBarStyles,
         bgs = _props.bgs,
         isNavVisible = _props.isNavVisible,
-        hideBottomNav = _props.hideBottomNav;
+        hideBottomNav = _props.hideBottomNav,
+        navButtonOptions = _props.navButtonOptions;
 
     var addProps = {
       screenOptions: this.state.screenOptions,
       scrollPrev: this.scrollPrev,
       scrollNext: this.scrollNext
     };
+
     return external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(
       external_root_React_commonjs2_react_commonjs_react_amd_react_["Fragment"],
       null,
@@ -740,7 +821,8 @@ var reactive_layout_component_ReactiveLayout = function (_Component) {
             scrollNext: _this3.scrollNext,
             scrollPrev: _this3.scrollPrev,
             screenOptions: _this3.state.screenOptions,
-            hideBottomNav: hideBottomNav
+            hideBottomNav: hideBottomNav,
+            navButtonOptions: navButtonOptions
           },
           external_root_React_commonjs2_react_commonjs_react_amd_react_default.a.createElement(components[index], addProps, null)
         );
@@ -764,6 +846,10 @@ reactive_layout_component_ReactiveLayout.propTypes = {
   navItems: prop_types_default.a.array.isRequired,
   components: prop_types_default.a.array.isRequired,
   navBarStyles: prop_types_default.a.object,
+  navButtonOptions: prop_types_default.a.shape({
+    size: prop_types_default.a.number,
+    color: prop_types_default.a.string
+  }),
   bgs: prop_types_default.a.arrayOf(prop_types_default.a.shape({
     img: prop_types_default.a.string,
     color: prop_types_default.a.string

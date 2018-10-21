@@ -2,7 +2,7 @@ var _extends = Object.assign || function (target) { for (var i = 1; i < argument
 
 import React from "react";
 import PropTypes from "prop-types";
-import NavButtons from "./scroll-top/nav-buttons.component";
+import ArrowButton from "./scroll-top/arrow-button";
 
 var containerStyle = {
   width: "100vw",
@@ -33,7 +33,7 @@ var Screen = function Screen(_ref) {
       scrollPrev = _ref.scrollPrev,
       id = _ref.id,
       bg = _ref.bg,
-      screenOptions = _ref.screenOptions;
+      navButtonOptions = _ref.navButtonOptions;
 
   var newStyles = {
     backgroundColor: bg.color || "transparent",
@@ -49,7 +49,8 @@ var Screen = function Screen(_ref) {
       { style: _extends({}, childBoxStyle, newStyles) },
       children || React.createElement("div", null)
     ),
-    !hideBottomNav && React.createElement(NavButtons, {
+    !hideBottomNav && React.createElement(ArrowButton, {
+      navButtonOptions: navButtonOptions,
       index: index,
       scrollNext: scrollNext,
       scrollPrev: scrollPrev,
@@ -67,7 +68,11 @@ Screen.propTypes = process.env.NODE_ENV !== "production" ? {
     img: PropTypes.string,
     color: PropTypes.string
   }),
-  screenOptions: PropTypes.object
+  screenOptions: PropTypes.object,
+  navButtonOptions: PropTypes.shape({
+    size: PropTypes.number,
+    color: PropTypes.string
+  })
 } : {};
 
 export default Screen;

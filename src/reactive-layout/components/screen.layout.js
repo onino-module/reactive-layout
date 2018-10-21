@@ -1,6 +1,6 @@
 import React from "react";
 import PropTypes from "prop-types";
-import NavButtons from "./scroll-top/nav-buttons.component";
+import ArrowButton from "./scroll-top/arrow-button";
 
 const containerStyle = {
   width: "100vw",
@@ -31,7 +31,7 @@ const Screen = ({
   scrollPrev,
   id,
   bg,
-  screenOptions,
+  navButtonOptions,
 }) => {
   const newStyles = {
     backgroundColor: bg.color || "transparent",
@@ -45,7 +45,8 @@ const Screen = ({
         {children || <div />}
       </div>
       {!hideBottomNav && (
-        <NavButtons
+        <ArrowButton
+          navButtonOptions={navButtonOptions}
           index={index}
           scrollNext={scrollNext}
           scrollPrev={scrollPrev}
@@ -66,6 +67,10 @@ Screen.propTypes = {
     color: PropTypes.string,
   }),
   screenOptions: PropTypes.object,
+  navButtonOptions: PropTypes.shape({
+    size: PropTypes.number,
+    color: PropTypes.string,
+  }),
 };
 
 export default Screen;
